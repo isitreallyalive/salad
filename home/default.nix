@@ -1,8 +1,6 @@
 {
-  lib,
   self,
   self',
-  config,
   inputs,
   inputs',
   ...
@@ -30,6 +28,9 @@
     };
 
     # common home-manager configuration
-    sharedModules = [ (self + /modules/home/default.nix) ];
+    sharedModules = [
+      (self + /modules/home/default.nix)
+      inputs.catppuccin.homeModules.catppuccin
+    ];
   };
 }

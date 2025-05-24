@@ -6,6 +6,8 @@
   ];
 
   salad = {
+    stateVersion = "24.11";
+
     displays = [
       # todo: update once deployed to real machine
       {

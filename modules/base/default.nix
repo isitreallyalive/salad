@@ -1,3 +1,5 @@
+{ config, ... }:
+
 {
   imports = [
     ../../home # home-manager
@@ -5,4 +7,6 @@
 
     ./nix.nix # nix
   ];
+
+  system.stateVersion = config.salad.stateVersion;
 }

@@ -26,10 +26,14 @@
     easy-hosts.url = "github:tgirlcloud/easy-hosts";
 
     ### additional
+    # format all the things
     treefmt = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # catppuccin theme
+    catppuccin.url = "github:catppuccin/nix";
 
     ### meta
     # all possible systems
