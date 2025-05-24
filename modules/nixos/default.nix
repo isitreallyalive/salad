@@ -12,10 +12,4 @@
 
     inputs.home-manager.nixosModules.home-manager
   ];
-
-  environment.systemPackages = with pkgs; [
-    # temp dev tools
-    # todo: remove
-    firefox    # firefox
-  ];
 }

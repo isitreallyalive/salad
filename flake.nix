@@ -1,7 +1,8 @@
 {
   description = "A very basic flake";
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } { imports = [ ./modules/flake ]; };
+  outputs =
+    inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } { imports = [ ./modules/flake ]; };
 
   inputs = {
     # we can save 15mb by using the channel tarball
@@ -23,6 +24,12 @@
 
     # multi-host configuration
     easy-hosts.url = "github:tgirlcloud/easy-hosts";
+
+    ### additional
+    treefmt = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     ### meta
     # all possible systems

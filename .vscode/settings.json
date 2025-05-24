@@ -1,14 +1,30 @@
 {
+  "[nix]": {
+    "editor.formatOnSave": true
+  },
+  
   "nix.serverSettings": {
     "nixd": {
+      "nixpkgs": {
+        "expr": "(builtins.getFlake (builtins.toString ./.)).inputs.nixpkgs"
+      },
+      "formatting": {
+        "command": ["treefmt", "--stdin", "{file}"]
+      },
       "options": {
         "nixos": {
           "expr": "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.cherry.options"
         },
         "home-manager": {
           "expr": "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.cherry.options.home-manager.users.type.getSubOptions []"
-        }
+        },
+        "flake-parts": {
+          "expr": "(builtins.getFlake (builtins.toString ./.)).debug.options"
+        },
+        "flake-parts2": {
+          "expr": "(builtins.getFlake (builtins.toString ./.)).currentSystem.options"
+        },
       }
     }
-  }
+  },
 }

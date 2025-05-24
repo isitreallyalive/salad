@@ -1,4 +1,12 @@
-{ lib, self, self', config, inputs, inputs', ... }:
+{
+  lib,
+  self,
+  self',
+  config,
+  inputs,
+  inputs',
+  ...
+}:
 
 {
   home-manager = {
@@ -13,7 +21,12 @@
     };
 
     extraSpecialArgs = {
-      inherit self self' inputs inputs';
+      inherit
+        self
+        self'
+        inputs
+        inputs'
+        ;
     };
 
     # common home-manager configuration

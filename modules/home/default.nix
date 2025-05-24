@@ -13,5 +13,6 @@
     };
   };
 
-  programs.autorandr.enable = true;
+  # todo: replace with librewolf
+  programs.firefox.enable = true;
 }

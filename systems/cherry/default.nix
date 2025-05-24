@@ -4,4 +4,16 @@
     # todo: strip and move into modules where possible
     ./old-hardware.nix
   ];
+
+  salad = {
+    displays = [
+      # todo: update once deployed to real machine
+      {
+        name = "Virtual-1";
+        width = 1920;
+        height = 1080;
+        refreshRate = 60;
+      }
+    ];
+  };
 }
