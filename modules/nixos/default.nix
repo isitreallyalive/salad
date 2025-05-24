@@ -17,6 +17,5 @@
     # temp dev tools
     # todo: remove
     firefox    # firefox
-    vscode     # vscode
   ];
 }

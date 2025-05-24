@@ -1,3 +1,14 @@
 {
-  "editor.indentSize": 2
+  "nix.serverSettings": {
+    "nixd": {
+      "options": {
+        "nixos": {
+          "expr": "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.cherry.options"
+        },
+        "home-manager": {
+          "expr": "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.cherry.options.home-manager.users.type.getSubOptions []"
+        }
+      }
+    }
+  }
 }

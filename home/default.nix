@@ -7,8 +7,10 @@
     useGlobalPkgs = true;
     backupFileExtension = "bak";
 
-    # todo: user-specific configuration
-    users = { newt = { }; };
+    # todo: generate automatically for all users
+    users.newt = {
+      imports = [ ./newt ];
+    };
 
     extraSpecialArgs = {
       inherit self self' inputs inputs';
