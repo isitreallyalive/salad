@@ -4,6 +4,8 @@
   imports = [
     ../../systems
 
+    ./lib # salad lib
+
     ./dev.nix # nix develop
     ./treefmt.nix # treefmt
   ];

@@ -15,7 +15,7 @@ let
       };
       groups = mkOption {
         type = types.listOf types.str;
-        default = [];
+        default = [ ];
         description = ''
           The groups that the user belongs to. The following are automatically assigned to every user:
             - `networkmanager`;

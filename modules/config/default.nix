@@ -2,6 +2,11 @@
 
 let
   inherit (lib) mkOption types;
+
+  profiles = [
+    "server"
+    "graphical"
+  ];
 in
 {
   imports = [
@@ -9,6 +14,12 @@ in
     ./users.nix # user configuration
   ];
 
+  # system profiles
+  options.salad.profiles = lib.genAttrs profiles (
+    profile: lib.mkEnableOption "the ${profile} profile"
+  );
+
+  # system state version
   options.salad.stateVersion = mkOption {
     type = types.str;
     default = "25.05";

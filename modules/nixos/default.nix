@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 
 {
   imports =
@@ -17,7 +17,7 @@
   # configuration.nix
   # todo: sort
   networking.networkmanager.enable = true;
-  time.timeZone = "Europe/London";
+  time.timeZone = if config.salad.profiles.server then "UTC" else "Europe/London";
   i18n.defaultLocale = "en_GB.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "en_GB.UTF-8";
