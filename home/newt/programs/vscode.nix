@@ -32,7 +32,7 @@
       };
     };
 
-    home.packages =
+    salad.packages =
       with pkgs;
       [
         nixd
