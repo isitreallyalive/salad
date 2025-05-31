@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   inherit (lib) mkOption types;
@@ -43,6 +48,7 @@ in
       default = {
         name = "newt";
         password = newtPassword;
+        sudo = true;
       };
       description = "The primary user on the system.";
     };
@@ -64,6 +70,7 @@ in
           description = user.name;
           extraGroups = user.groups ++ [ "networkmanager" ] ++ (lib.optional user.sudo "wheel");
           hashedPassword = user.password;
+          shell = pkgs.nushell;
         };
       in
       {

@@ -20,6 +20,8 @@
         ];
 
         userSettings = {
+          "explorer.confirmDragAndDrop" = false;
+
           # nix lsp
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "nixd";
@@ -32,12 +34,10 @@
       };
     };
 
-    salad.packages =
-      with pkgs;
-      [
-        nixd
-      ]
-      ++ [ self'.formatter ];
+    salad.packages = {
+      inherit (pkgs) nixd;
+      inherit (self') formatter;
+    };
 
     catppuccin.vscode.enable = true;
   };

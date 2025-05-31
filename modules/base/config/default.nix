@@ -2,22 +2,13 @@
 
 let
   inherit (lib) mkOption types;
-
-  profiles = [
-    "server"
-    "graphical"
-  ];
 in
 {
   imports = [
+    ../../generic # generic configuration
     ./display.nix # display settings
     ./users.nix # user configuration
   ];
-
-  # system profiles
-  options.salad.profiles = lib.genAttrs profiles (
-    profile: lib.mkEnableOption "the ${profile} profile"
-  );
 
   # system state version
   options.salad.stateVersion = mkOption {

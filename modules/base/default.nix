@@ -3,7 +3,8 @@
 {
   imports = [
     ../../home # home-manager
-    ../config # salad options
+
+    ./config # salad options
 
     ./nix.nix # nix
   ];

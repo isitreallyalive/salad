@@ -2,7 +2,10 @@
 
 {
   imports = [
+    ../generic
+
     ./home.nix # home-manager
+    ./shell.nix # shell configuration
   ];
 
   programs.git = {

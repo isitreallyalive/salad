@@ -1,4 +1,9 @@
-{ lib, config, _class }:
+{
+  lib,
+  config,
+  _class,
+  ...
+}:
 
 let
   inherit (builtins) attrValues;
@@ -16,7 +21,7 @@ in
       environment.systemPackages = attrValues config.salad.packages;
     })
 
-    (optionalAttrs (_class == "home") {
+    (optionalAttrs (_class == "homeManager") {
       home.packages = attrValues config.salad.packages;
     })
   ];
