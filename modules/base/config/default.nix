@@ -7,7 +7,6 @@ in
   imports = [
     ../../generic # generic configuration
     ./display.nix # display settings
-    ./users.nix # user configuration
   ];
 
   # system state version

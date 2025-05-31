@@ -1,7 +1,5 @@
 {
-  pkgs,
   lib,
-  config,
   ...
 }:
 
@@ -31,6 +29,16 @@ let
         default = false;
         description = "Whether the user should be able to use sudo.";
       };
+      git = {
+        name = mkOption {
+          type = types.str;
+          description = "The user's git username.";
+        };
+        email = mkOption {
+          type = types.str;
+          description = "The user's git email address.";
+        };
+      };
     };
   };
 
@@ -49,6 +57,10 @@ in
         name = "newt";
         password = newtPassword;
         sudo = true;
+        git = {
+          name = "newt";
+          email = "hi@newty.dev";
+        };
       };
       description = "The primary user on the system.";
     };
@@ -57,31 +69,5 @@ in
       default = [ ];
       description = "Secondary users on the system.";
     };
-  };
-
-  config = {
-    users.mutableUsers = false;
-    users.users =
-      let
-        inherit (config.salad.users) rootPassword main others;
-
-        configureUser = user: {
-          isNormalUser = true;
-          description = user.name;
-          extraGroups = user.groups ++ [ "networkmanager" ] ++ (lib.optional user.sudo "wheel");
-          hashedPassword = user.password;
-          shell = pkgs.nushell;
-        };
-      in
-      {
-        root.hashedPassword = rootPassword;
-        ${main.name} = configureUser main;
-      }
-      // (lib.listToAttrs (
-        map (user: {
-          name = user.name;
-          value = configureUser user;
-        }) others
-      ));
   };
 }

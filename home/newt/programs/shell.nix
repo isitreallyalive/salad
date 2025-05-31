@@ -1,21 +1,19 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 
 {
-  # git user configuration
-  # todo: manage through config.salad.users.git
-  programs.git = {
-    userName = "newt";
-    userEmail = "hi@newty.dev";
-  };
-
   programs.nushell.shellAliases = {
     cowsay = "kittysay";
+    neofetch = "fastfetch";
   };
 
   salad.packages = {
     inherit (pkgs)
+      fastfetch # `neofetch` replacement
       kittysay # `cowsay` but with a cute kitty
-      onefetch # neofetch for git repositories
+      onefetch # `neofetch` for git repositories
       ;
   };
 }

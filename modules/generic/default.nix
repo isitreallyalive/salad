@@ -9,6 +9,7 @@ in
 {
   imports = [
     ./packages.nix # system packages
+    ./users.nix # user configuration
   ];
 
   # system profiles
