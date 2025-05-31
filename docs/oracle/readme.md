@@ -5,7 +5,7 @@
 we need to use `kexec` to install the operating system.
 
 ```sh
-curl -sSL https://raw.githubusercontent.com/isitreallyalive/salad/main/docs/oracle/kexec.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/isitreallyalive/salad/refs/heads/main/docs/oracle/kexec.sh | sudo bash
 ```
 
 and then reconnect to ssh as the root user.
@@ -15,5 +15,5 @@ and then reconnect to ssh as the root user.
 *thanks to [Ming Di Leom](https://mdleom.com/blog/2021/03/09/nixos-oracle/)*
 
 ```sh
-curl -sSL https://raw.githubusercontent.com/isitreallyalive/salad/main/docs/oracle/install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/isitreallyalive/salad/refs/heads/main/docs/oracle/install.sh | sudo bash
 ```

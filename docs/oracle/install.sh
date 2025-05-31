@@ -43,7 +43,7 @@ swapon /dev/sda3
 nix-channel --add https://nixos.org/channels/nixos-unstable nixpkgs
 nix-channel --update
 nixos-generate-config --root /mnt
-curl -L https://raw.githubusercontent.com/isitreallyalive/salad/main/docs/oracle/configuration.nix -o /mnt/etc/nixos/configuration.nix
+curl -L https://raw.githubusercontent.com/isitreallyalive/salad/refs/heads/main/docs/oracle/configuration.nix -o /mnt/etc/nixos/configuration.nix
 
 # --- installation ---
 nixos-install
