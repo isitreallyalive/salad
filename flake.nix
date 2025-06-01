@@ -16,7 +16,7 @@
     };
 
     # secret management
-    ragenix.url = "github:yaxitech/ragenix";
+    agenix.url = "github:ryantm/agenix";
 
     ### flake management
     # bring everything together

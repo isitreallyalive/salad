@@ -53,7 +53,7 @@
         (self + /modules/home/default.nix)
       ]
       ++ (with inputs; [
-        ragenix.homeManagerModules.default
+        agenix.homeManagerModules.default
         catppuccin.homeModules.catppuccin
       ]);
   };

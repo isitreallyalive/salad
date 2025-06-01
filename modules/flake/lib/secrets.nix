@@ -5,7 +5,7 @@ let
 in
 {
   /**
-    * Create a user secret to use with `ragenix`.
+    * Create a user secret to use with `agenix`.
     *
     * @param file - the age file to use for the secret
   */

@@ -16,7 +16,7 @@
       ./boot.nix # boot config
     ]
     ++ (with inputs; [
-      ragenix.nixosModules.default
+      agenix.nixosModules.default
       catppuccin.nixosModules.catppuccin
       home-manager.nixosModules.home-manager
     ]);
@@ -43,9 +43,9 @@
   };
   console.keyMap = "uk";
 
-  # ragenix cli
+  # agenix cli
   salad.packages = {
-    inherit (inputs.ragenix.packages.${pkgs.system}) default;
+    inherit (inputs.agenix.packages.${pkgs.system}) default;
   };
 
   # catppuccin config

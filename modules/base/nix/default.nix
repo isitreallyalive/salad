@@ -8,7 +8,7 @@
     "nix-command"
     "flakes"
 
-    # ragenix
+    # agenix
     "recursive-nix"
   ];
 
