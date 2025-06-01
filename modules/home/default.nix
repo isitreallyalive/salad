@@ -4,8 +4,9 @@
   imports = [
     ../generic
 
+    ./shell.nix
+
     ./home.nix # home-manager
-    ./shell.nix # shell configuration
   ];
 
   programs.git = {
