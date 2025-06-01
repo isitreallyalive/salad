@@ -10,7 +10,7 @@ let
   inherit (pkgs) vscode-extensions;
   general = with vscode-extensions; [
     skellock.just
-    
+
     aaron-bond.better-comments
     catppuccin.catppuccin-vsc-icons
   ];
@@ -21,9 +21,12 @@ in
       enable = true;
 
       profiles.default = {
-        extensions = with pkgs.vscode-extensions; [
-          jnoortheen.nix-ide
-        ] ++ general;
+        extensions =
+          with pkgs.vscode-extensions;
+          [
+            jnoortheen.nix-ide
+          ]
+          ++ general;
 
         userSettings = {
           "explorer.confirmDragAndDrop" = false;

@@ -1,4 +1,8 @@
 {
+  imports = [
+    ./substituters.nix
+  ];
+
   nix.settings.experimental-features = [
     # flakes
     "nix-command"

@@ -27,7 +27,7 @@ in
 
       UseDns = false;
       X11Forwarding = false;
-    
+
       # use key exchange algorithms recommended by `nixpkgs#ssh-audit`
       KexAlgorithms = [
         "curve25519-sha256"

@@ -5,8 +5,8 @@
     ../../home # home-manager
 
     ./config # salad options
+    ./nix # nix configuration
 
-    ./nix.nix # nix configuration
     ./users.nix # user generation
   ];
 

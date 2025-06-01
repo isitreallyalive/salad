@@ -8,4 +8,4 @@
 - direnv
 - sudoless rebuilds
 - librewolf
-- substituters
+- pipe operator
