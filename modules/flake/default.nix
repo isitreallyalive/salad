@@ -6,6 +6,7 @@
 
     ./lib # salad lib
 
+    ./deploy.nix # deploy-rs
     ./dev.nix # nix develop
     ./treefmt.nix # treefmt
   ];

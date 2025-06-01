@@ -25,6 +25,15 @@
     # multi-host configuration
     easy-hosts.url = "github:tgirlcloud/easy-hosts";
 
+    # deploy to remote
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "";
+      };
+    };
+
     ### additional
     # format all the things
     treefmt = {

@@ -14,10 +14,16 @@
     #  class = "nixos";
     #  modules = [ ];
     #  specialArgs = { };
+    #  deployable = false;
     hosts = {
       # todo: apple
       # todo: blueberry
       cherry = { };
+
+      lychee = {
+        arch = "aarch64";
+        deployable = true;
+      };
     };
   };
 }

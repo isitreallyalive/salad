@@ -55,4 +55,9 @@
       zoxide # `cd` replacement
       ;
   };
+
+  # automatically set up remotes for git repositories
+  programs.git.extraConfig = {
+    push.autoSetupRemote = true;
+  };
 }

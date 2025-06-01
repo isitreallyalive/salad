@@ -15,5 +15,6 @@ and then reconnect to ssh as the root user.
 *thanks to [Ming Di Leom](https://mdleom.com/blog/2021/03/09/nixos-oracle/)*
 
 ```sh
-curl -sSL https://raw.githubusercontent.com/isitreallyalive/salad/refs/heads/main/docs/oracle/install.sh "<ssh key>" "<swap size>" | sudo bash
+curl -sSL https://raw.githubusercontent.com/isitreallyalive/salad/refs/heads/main/docs/oracle/install.sh -o install.sh
+bash install.sh "<ssh key>" "<swap size>"
 ```

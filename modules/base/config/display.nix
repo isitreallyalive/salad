@@ -31,6 +31,7 @@ in
       }
     );
 
+    default = [ ];
     description = "List of displays to configure.";
   };
 }

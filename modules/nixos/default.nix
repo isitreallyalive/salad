@@ -8,6 +8,7 @@
       ./plasma # plasma6 de
 
       ./boot.nix # boot config
+      ./openssh.nix # ssh
     ]
     ++ (with inputs; [
       catppuccin.nixosModules.catppuccin

@@ -5,6 +5,9 @@
     ./old-hardware.nix
   ];
 
+  # allow cross compilation to aarch64
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   salad = {
     stateVersion = "24.11";
 
