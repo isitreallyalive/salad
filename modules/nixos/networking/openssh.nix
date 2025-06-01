@@ -1,5 +1,3 @@
-{ config, ... }:
-
 let
   keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIENpe82Cp9F0/faLQu5sl8u76JCTMuOinY455jaIuPsY"
@@ -16,6 +14,20 @@ in
     allowSFTP = true;
 
     settings = {
+      # todo: don't allow root login
+      # PermitRootLogin = "no";
+
+      # only allow key based logins and not password
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      AuthenticationMethods = "publickey";
+      PubkeyAuthentication = "yes";
+      ChallengeResponseAuthentication = "no";
+      UsePAM = false;
+
+      UseDns = false;
+      X11Forwarding = false;
+    
       # use key exchange algorithms recommended by `nixpkgs#ssh-audit`
       KexAlgorithms = [
         "curve25519-sha256"

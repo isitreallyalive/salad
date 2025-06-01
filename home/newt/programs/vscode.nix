@@ -6,6 +6,15 @@
   ...
 }:
 
+let
+  inherit (pkgs) vscode-extensions;
+  general = with vscode-extensions; [
+    skellock.just
+    
+    aaron-bond.better-comments
+    catppuccin.catppuccin-vsc-icons
+  ];
+in
 {
   config = self.lib.mkIfProfile osConfig "graphical" {
     programs.vscode = {
@@ -14,10 +23,7 @@
       profiles.default = {
         extensions = with pkgs.vscode-extensions; [
           jnoortheen.nix-ide
-          skellock.just
-
-          catppuccin.catppuccin-vsc-icons
-        ];
+        ] ++ general;
 
         userSettings = {
           "explorer.confirmDragAndDrop" = false;

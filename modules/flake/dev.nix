@@ -17,7 +17,7 @@
             just # task runner
             mkpasswd # password generator
             nix-output-monitor # clean diff between generations
-            deploy-rs
+            deploy-rs # deployment tool
           ])
           ++ [ self'.formatter ];
 

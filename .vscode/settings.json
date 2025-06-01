@@ -1,15 +1,8 @@
 {
-  "[nix]": {
-    "editor.formatOnSave": true
-  },
-  
   "nix.serverSettings": {
     "nixd": {
       "nixpkgs": {
         "expr": "(builtins.getFlake (builtins.toString ./.)).inputs.nixpkgs"
-      },
-      "formatting": {
-        "command": ["treefmt", "--stdin", "{file}"]
       },
       "options": {
         "nixos": {
@@ -26,5 +19,5 @@
         },
       }
     }
-  },
+  }
 }

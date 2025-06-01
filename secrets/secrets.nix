@@ -40,4 +40,8 @@ in
   # git ssh keys
   "keys/gh.age" = defAccessNewt (types.workstations ++ types.servers);
   "keys/gh-pub.age" = defAccessNewt (types.workstations ++ types.servers);
+
+  # tailscale auth key
+  # expires: 30/08/2025
+  "tailscale.age" = defAccessNewt (builtins.attrValues hosts);
 }
