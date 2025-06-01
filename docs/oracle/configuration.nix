@@ -29,6 +29,9 @@
   ];
 
   services.openssh.enable = true;
+  users.users.root.openssh.authorizedKeys.keys = [
+    "<ssh key>"
+  ];
 
   system.stateVersion = "25.11";
 }

@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 ARCH=$(uname -m)
 
@@ -13,6 +13,7 @@ case $ARCH in
         ;;
 esac
 
-sudo -i
-curl -L "$INSTALLER" | tar -xzf- -C /root
-/root/kexec/run
+sudo bash -c "
+    curl -L '$INSTALLER' | tar -xzf- -C /root
+    /root/kexec/run
+"

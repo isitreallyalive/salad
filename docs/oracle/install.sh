@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# check if ssh key and swap size are provided
+if [ $# -lt 2 ]; then
+    echo "Usage: $0 '<ssh-public-key>' '<swap-size>'"
+    echo "Example: $0 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGm... user@host' '1G'"
+    echo "Swap size examples: 1G, 2G, 512M"
+    exit 1
+fi
+
+SSH_KEY="$1"
+SWAP_SIZE="$2"
+
 # --- partition ---
 
 # see: https://mdleom.com/blog/2021/03/09/nixos-oracle/
@@ -13,7 +24,7 @@ n
 n
 2
 
--1G
+-${SWAP_SIZE}
 n
 3
 
@@ -42,8 +53,10 @@ swapon /dev/sda3
 # --- configuration ---
 nix-channel --add https://nixos.org/channels/nixos-unstable nixpkgs
 nix-channel --update
+
 nixos-generate-config --root /mnt
 curl -L https://raw.githubusercontent.com/isitreallyalive/salad/refs/heads/main/docs/oracle/configuration.nix -o /mnt/etc/nixos/configuration.nix
+sed -i "s|<ssh key>|$SSH_KEY|g" /mnt/etc/nixos/configuration.nix
 
 # --- installation ---
 nixos-install
