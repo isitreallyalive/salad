@@ -16,6 +16,7 @@
       ./boot.nix # boot config
     ]
     ++ (with inputs; [
+      lix.nixosModules.default
       agenix.nixosModules.default
       catppuccin.nixosModules.catppuccin
       home-manager.nixosModules.home-manager
