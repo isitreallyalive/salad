@@ -12,9 +12,9 @@
     # defaults:
     #  arch = "x86_64";
     #  class = "nixos";
+    #  deployable = false;
     #  modules = [ ];
     #  specialArgs = { };
-    #  deployable = false;
     hosts = {
       # todo: apple
       # todo: blueberry

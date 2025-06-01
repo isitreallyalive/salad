@@ -3,6 +3,11 @@ rebuild system="cherry" *args:
   @git add .
   sudo nixos-rebuild switch --flake .#{{system}} {{args}}
 
+deploy *args:
+  @treefmt -q
+  @git add .
+  @deploy {{args}}
+
 clean:
   sudo nix-collect-garbage -d
   sudo nix-store --optimize

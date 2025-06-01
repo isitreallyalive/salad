@@ -2,8 +2,9 @@
 
 let
   profiles = [
-    "server"
     "graphical"
+    "server"
+    "workstation"
   ];
 in
 {

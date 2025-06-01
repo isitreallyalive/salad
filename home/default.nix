@@ -48,9 +48,13 @@
     };
 
     # common home-manager configuration
-    sharedModules = [
-      (self + /modules/home/default.nix)
-      inputs.catppuccin.homeModules.catppuccin
-    ];
+    sharedModules =
+      [
+        (self + /modules/home/default.nix)
+      ]
+      ++ (with inputs; [
+        ragenix.homeManagerModules.default
+        catppuccin.homeModules.catppuccin
+      ]);
   };
 }

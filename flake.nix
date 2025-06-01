@@ -15,6 +15,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # secret management
+    ragenix = {
+  url = "github:yaxitech/ragenix";
+  inputs.nixpkgs.follows = "nixpkgs";
+};
+
     ### flake management
     # bring everything together
     flake-parts = {

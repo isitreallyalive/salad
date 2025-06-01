@@ -1,16 +1,22 @@
-{ inputs, config, ... }:
+{
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 
 {
   imports =
     [
       ../base
 
+      ./networking
       ./plasma # plasma6 de
 
       ./boot.nix # boot config
-      ./openssh.nix # ssh
     ]
     ++ (with inputs; [
+      ragenix.nixosModules.default
       catppuccin.nixosModules.catppuccin
       home-manager.nixosModules.home-manager
     ]);
@@ -36,6 +42,11 @@
     variant = "";
   };
   console.keyMap = "uk";
+
+  # ragenix cli
+  salad.packages = {
+    inherit (inputs.ragenix.packages.${pkgs.system}) default;
+  };
 
   # catppuccin config
   catppuccin.flavor = "mocha";

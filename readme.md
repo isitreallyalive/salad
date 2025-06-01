@@ -4,4 +4,6 @@
 
 - eliminate dependency on hardware-configuration.nix
 - tailscale
-- agenix
+- lyx
+- commit signing
+- direnv

@@ -1,7 +1,7 @@
 # todo: add lanzaboote
 # https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
 
-{ config, ... }:
+{ self, config, ... }:
 
 let
   inherit (builtins) toString;
@@ -14,6 +14,9 @@ in
     # allow EFI variables to be set
     efi.canTouchEfiVariables = true;
   };
+
+  # allow cross compilation to aarch64
+  boot.binfmt.emulatedSystems = self.lib.mkIfProfile config "workstation" [ "aarch64-linux" ];
 
   # set display resolutions
   # see: https://wiki.archlinux.org/title/Kernel_mode_setting

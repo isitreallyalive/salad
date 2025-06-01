@@ -1,4 +1,4 @@
-{ config, ... }:
+{ self, config, ... }:
 
 {
   imports = [
@@ -11,4 +11,5 @@
   ];
 
   system.stateVersion = config.salad.stateVersion;
+  system.configurationRevision = self.shortRev or self.dirtyShortRev or "dirty";
 }
