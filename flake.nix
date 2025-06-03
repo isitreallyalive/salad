@@ -2,7 +2,18 @@
   description = "A very basic flake";
 
   outputs =
-    inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } { imports = [ ./modules/flake ]; };
+    inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } { imports = [ ./modules/flake ]; }
+    // {
+      templates = rec {
+        default = empty;
+
+        empty = {
+          path = ./templates/empty;
+          description = "An empty flake template that can be adapted to your environment";
+        };
+      };
+    };
 
   inputs = {
     # we can save 15mb by using the channel tarball
