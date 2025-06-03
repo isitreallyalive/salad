@@ -1,7 +1,7 @@
 # todo: add lanzaboote
 # https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
 
-{ self, config, ... }:
+{ config, ... }:
 
 let
   inherit (builtins) toString;

@@ -44,6 +44,9 @@
     };
 
     ### additional
+    # run foreign executables
+    alien.url = "github:thiagokokada/nix-alien";
+
     # format all the things
     treefmt = {
       url = "github:numtide/treefmt-nix";

@@ -19,6 +19,15 @@ in
   # syntax highlighting for diffs
   programs.git.delta.enable = true;
 
+  # direnv
+  programs.direnv =
+    enable
+    // bash
+    // {
+      silent = true;
+      nix-direnv.enable = true;
+    };
+
   # fuzzy finder
   #
   # nushell integration may come soon

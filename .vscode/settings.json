@@ -1,4 +1,8 @@
 {
+  "files.exclude": {
+    ".direnv": true
+  },
+
   "nix.serverSettings": {
     "nixd": {
       "nixpkgs": {

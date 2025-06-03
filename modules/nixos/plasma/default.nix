@@ -5,9 +5,6 @@
   ...
 }:
 
-let
-  dpi = percent: 96 * (percent / 100);
-in
 {
   imports = [
     ./fonts.nix
@@ -20,7 +17,6 @@ in
         enable = true;
         wayland.enable = true;
       };
-      xserver.dpi = dpi 125;
     };
 
     # todo: exclude other bloat

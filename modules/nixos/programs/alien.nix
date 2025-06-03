@@ -1,12 +1,9 @@
-let
-  nix-alien-pkgs = import (
-    builtins.fetchTarball "https://github.com/thiagokokada/nix-alien/tarball/master"
-  ) { };
-in
+{ pkgs, inputs, ... }:
+
 {
-  environment.systemPackages = with nix-alien-pkgs; [
-    nix-alien
-  ];
+  salad.packages = {
+    inherit (inputs.alien.packages.${pkgs.system}) nix-alien;
+  };
 
   # `nix-alien-ld`
   programs.nix-ld.enable = true;
