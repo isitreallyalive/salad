@@ -12,6 +12,7 @@
 
       ./networking
       ./plasma # plasma6 de
+      ./programs
 
       ./boot.nix # boot config
     ]

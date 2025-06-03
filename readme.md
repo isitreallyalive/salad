@@ -3,7 +3,7 @@
 ## todo
 
 - eliminate dependency on hardware-configuration.nix
-- commit signing
+- commit signing (gpg)
 - direnv
 - sudoless rebuilds
 - librewolf
