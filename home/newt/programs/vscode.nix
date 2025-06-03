@@ -29,7 +29,14 @@ in
           ++ general;
 
         userSettings = {
+          # general
           "explorer.confirmDragAndDrop" = false;
+          "git.confirmSync" = false;
+
+          # appearance
+          "editor.fontFamily" = "'Cascadia Code NF', 'monospace', monospace";
+          "editor.fontLigatures" = true;
+          "terminal.integrated.fontFamily" = "'Cascadia Code NF', 'monospace', monospace";
 
           # nix lsp
           "nix.enableLanguageServer" = true;

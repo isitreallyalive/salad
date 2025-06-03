@@ -1,5 +1,9 @@
+{ pkgs, ... }:
+
 {
   imports = [
+    # todo: carapace
+    ./starship.nix
     ./utils.nix
   ];
 
@@ -7,8 +11,27 @@
   programs.nushell = {
     enable = true;
 
-    # todo: starship
-    # todo: carapace
+    settings = {
+      show_banner = false;
+      shell_integration = {
+        # abbreviate path in home directory, set tab/window title, show running command
+        osc2 = true;
+        # communicate current path to terminal for spawning new tabs in same directory
+        osc7 = true;
+        # show clickable links in ls output if terminal supports it
+        osc8 = true;
+        # ConEmu path communication (similar to osc7, limited support)
+        osc9_9 = false;
+        # final Term escapes for prompt/command/output boundaries
+        # enables terminals to distinguish prompt, command, and output sections
+        osc133 = true;
+        # vs code shell integration features (similar to osc133)
+        # supports shell integration and run recent menu in VS Code
+        osc633 = true;
+        # reset application mode escape sequence for better SSH compatibility
+        reset_application_mode = true;
+      };
+    };
 
     shellAliases = {
       cat = "bat";
@@ -27,8 +50,13 @@
     };
   };
 
-  # automatically set up remotes for git repositories
-  programs.git.extraConfig = {
-    push.autoSetupRemote = true;
+  # `git`
+  programs.git = {
+    enable = true;
+    package = pkgs.gitMinimal;
+    extraConfig = {
+      init.defaultBranch = "main"; # default branch `main`
+      push.autoSetupRemote = true; # auto remote
+    };
   };
 }

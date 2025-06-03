@@ -3,17 +3,27 @@
 
 { pkgs, ... }:
 
-let shellIntegration = {
-  enable = true;
-  enableBashIntegration = true;
-  enableNushellIntegration = true;
-}; in
+let
+  enable = {
+    enable = true;
+  };
+  bash = {
+    enableBashIntegration = true;
+  };
+  nushell = {
+    enableNushellIntegration = true;
+  };
+  shells = bash // nushell;
+in
 {
   # syntax highlighting for diffs
   programs.git.delta.enable = true;
 
   # fuzzy finder
-  programs.fzf = shellIntegration;
+  #
+  # nushell integration may come soon
+  # see: https://github.com/junegunn/fzf/issues/4122
+  programs.fzf = enable // bash;
 
   # `vim`-like editor
   programs.helix = {
@@ -22,17 +32,17 @@ let shellIntegration = {
   };
 
   # command suggestions
-  programs.pay-respects = shellIntegration;
+  programs.pay-respects = enable // shells;
 
   # tldr `man` pages
   programs.tealdeer.enable = true;
 
   # replacements
   programs.bat.enable = true; # `cat`
-  programs.eza = shellIntegration; # `ls`
+  programs.eza = enable // shells; # `ls`
   programs.fd.enable = true; # `find`
   programs.ripgrep.enable = true; # `grep`
-  programs.zoxide = shellIntegration; # `cd`
+  programs.zoxide = enable // shells; # `cd`
 
   # others
   # todo: submit to nixpkgs?
