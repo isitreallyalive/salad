@@ -1,0 +1,18 @@
+[book]
+authors = ["newt"]
+language = "en"
+multilingual = false
+src = "src"
+title = "salad"
+
+[output.html]
+additional-css = ["theme/catppuccin.css", "theme/catppuccin-alerts.css"]
+default-theme = "latte"
+preferred-dark-theme = "mocha"
+
+git-repository-url = "https://github.com/isitreallyalive/salad"
+git-repository-icon = "fa-code-fork"
+
+cname = "salad.newty.dev"
+
+[preprocessor.alerts]
