@@ -20,7 +20,7 @@ jobs:
         with:
           tool: mdbook
 
-      - name: Install mdbook alerts
+      - name: Install mdbook-alerts
         uses: taiki-e/cache-cargo-install-action@v2
         with:
           tool: mdbook-alerts

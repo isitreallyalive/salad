@@ -1,7 +1,7 @@
-# rebuild system="cherry" +args:
-#   @treefmt -q
-#   @git add .
-#   sudo nixos-rebuild switch --flake .#{{system}} {{args}}
+rebuild system="cherry" *args:
+  @treefmt -q
+  @git add .
+  sudo nixos-rebuild switch --flake .#{{system}} {{args}}
 
 deploy *args:
   @treefmt -q
@@ -15,5 +15,5 @@ clean:
 rollback:
   sudo nixos-rebuild switch --rollback
 
-mdbook +args:
+book +args:
   @cd docs && mdbook {{args}}

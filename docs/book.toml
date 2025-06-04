@@ -13,6 +13,4 @@ preferred-dark-theme = "mocha"
 git-repository-url = "https://github.com/isitreallyalive/salad"
 git-repository-icon = "fa-code-fork"
 
-cname = "salad.newty.dev"
-
 [preprocessor.alerts]
