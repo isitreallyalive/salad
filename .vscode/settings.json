@@ -1,7 +1,7 @@
 {
   "files.exclude": {
     ".direnv": true,
-    "docs/book": true
+    "book/book": true
   },
 
   "nix.serverSettings": {

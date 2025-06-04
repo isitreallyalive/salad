@@ -1,8 +1,6 @@
 # salad
 
-## dev environments
-
-i also maintain a bunch of [dev environments](https://github.com/isitreallyalive/dev-environments).
+[book](https://salad.newty.dev/)
 
 ## todo
 

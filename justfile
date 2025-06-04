@@ -16,4 +16,4 @@ rollback:
   sudo nixos-rebuild switch --rollback
 
 book +args:
-  @cd docs && mdbook {{args}}
+  @cd book && mdbook {{args}}
