@@ -4,6 +4,10 @@ let
   };
 
   hosts = {
+    blueberry = {
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/H968SrIhfBGk7R1HFHBjWQkQc4SQXjdO+NQQL/+Jn";
+      owner = "newt";
+    };
     cherry = {
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHBp4SdagM0JwAyKovh308n0QD8VtcEDt2iZLn1IxlwK";
       owner = "newt";
@@ -19,6 +23,7 @@ let
       cherry
     ];
     servers = [
+      blueberry
       lychee
     ];
   };

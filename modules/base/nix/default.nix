@@ -7,15 +7,15 @@
 
   nix.settings = {
     experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+      "nix-command"
+      "flakes"
+    ];
 
-  trusted-users = [
-    "root"
-    config.salad.users.main.name
-  ];
-  
+    trusted-users = [
+      "root"
+      config.salad.users.main.name
+    ];
+
   };
 
   nixpkgs.config.allowUnfree = true;

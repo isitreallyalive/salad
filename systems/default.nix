@@ -17,7 +17,9 @@
     #  specialArgs = { };
     hosts = {
       # todo: apple
-      # todo: blueberry
+      blueberry = {
+        deployable = true;
+      };
       cherry = { };
 
       lychee = {
