@@ -1,7 +1,7 @@
-rebuild system="cherry" *args:
+rebuild *args:
   @treefmt -q
   @git add .
-  sudo nixos-rebuild switch --flake .#{{system}} {{args}}
+  @sudo nixos-rebuild switch --flake .#$(hostname) {{args}}
 
 deploy *args:
   @treefmt -q

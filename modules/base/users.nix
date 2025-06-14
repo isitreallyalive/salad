@@ -17,7 +17,6 @@
         description = user.name;
         extraGroups = user.groups ++ [ "networkmanager" ] ++ (lib.optional user.sudo "wheel");
         hashedPassword = user.password;
-        shell = pkgs.nushell;
       };
     in
     {

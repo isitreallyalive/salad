@@ -45,9 +45,11 @@
   };
   console.keyMap = "uk";
 
-  # agenix cli
   salad.packages = {
+    # agenix cli
     inherit (inputs.agenix.packages.${pkgs.system}) default;
+    # make sure nushell is accessible in the bashrc
+    inherit (pkgs) nushell;
   };
 
   # catppuccin config
