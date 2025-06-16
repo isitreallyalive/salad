@@ -9,5 +9,7 @@
     profiles = {
       server = true;
     };
+
+    deploy.remote = true;
   };
 }

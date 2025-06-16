@@ -27,7 +27,7 @@ in
       profiles.system = {
         user = "root";
         sshUser = "root";
-        # todo: add option to build on remote machine
+        remoteBuild = node.config.salad.deploy.remote;
         path = inputs.deploy-rs.lib.${config.easy-hosts.hosts.${name}.system}.activate.nixos node;
       };
     }) easyHostsFromDeployableSystems;

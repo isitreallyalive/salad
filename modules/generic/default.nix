@@ -1,6 +1,8 @@
 { lib, ... }:
 
 let
+  inherit (lib) mkEnableOption;
+
   profiles = [
     "graphical"
     "server"
@@ -15,6 +17,9 @@ in
 
   # system profiles
   options.salad.profiles = lib.genAttrs profiles (
-    profile: lib.mkEnableOption "the ${profile} profile"
+    profile: mkEnableOption "the ${profile} profile"
   );
+
+  # remote builds
+  options.salad.deploy.remote = mkEnableOption "build on remote machine when deploying";
 }
