@@ -9,7 +9,7 @@ let
       owner = "newt";
     };
     cherry = {
-      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHBp4SdagM0JwAyKovh308n0QD8VtcEDt2iZLn1IxlwK";
+      key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHyG81iNDCrBoU0BOFC4koSpr2LZPuE87dJnKg7kicQ9";
       owner = "newt";
     };
     lychee = {

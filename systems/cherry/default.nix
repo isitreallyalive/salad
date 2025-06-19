@@ -8,11 +8,10 @@
 
     displays = [
       {
-        # todo: update once deployed to real machine
-        name = "Virtual-1";
+        name = "eDP-1";
         width = 1920;
         height = 1080;
-        refreshRate = 60;
+        refreshRate = 144;
       }
     ];
 

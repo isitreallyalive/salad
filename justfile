@@ -1,19 +1,22 @@
-rebuild *args:
-  @treefmt -q
-  @git add .
-  @sudo nixos-rebuild switch --flake .#$(hostname) {{args}}
+@rebuild *args:
+  treefmt -q
+  git add .
+  sudo nixos-rebuild switch --flake .#$(hostname) {{args}}
 
-deploy *args:
-  @treefmt -q
-  @git add .
-  @deploy {{args}}
+@deploy *args:
+  treefmt -q
+  git add .
+  deploy {{args}}
 
 clean:
   sudo nix-collect-garbage -d
   sudo nix-store --optimize
 
-rollback:
+@rollback:
   sudo nixos-rebuild switch --rollback
 
-book +args:
-  @cd book && mdbook {{args}}
+@rekey:
+  cd secrets && agenix -r
+
+@book +args:
+  cd book && mdbook {{args}}

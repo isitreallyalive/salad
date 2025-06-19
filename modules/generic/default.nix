@@ -16,9 +16,7 @@ in
   ];
 
   # system profiles
-  options.salad.profiles = lib.genAttrs profiles (
-    profile: mkEnableOption "the ${profile} profile"
-  );
+  options.salad.profiles = lib.genAttrs profiles (profile: mkEnableOption "the ${profile} profile");
 
   # remote builds
   options.salad.deploy.remote = mkEnableOption "build on remote machine when deploying";
