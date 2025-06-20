@@ -31,15 +31,13 @@ let
         default = false;
         description = "Whether the user should be able to use sudo.";
       };
-      git = {
-        name = mkOption {
-          type = types.str;
-          description = "The user's git username.";
-        };
-        email = mkOption {
-          type = types.str;
-          description = "The user's git email address.";
-        };
+      gitName = mkOption {
+        type = types.str;
+        description = "The user's git username.";
+      };
+      email = mkOption {
+        type = types.str;
+        description = "The user's primary email address. Used for git and ACME.";
       };
     };
   };
@@ -59,10 +57,8 @@ in
         name = "newt";
         password = newtPassword;
         sudo = true;
-        git = {
-          name = "newt";
-          email = "hi@newty.dev";
-        };
+        gitName = "newt";
+        email = "hi@newty.dev";
       };
       description = "The primary user on the system.";
     };

@@ -1,8 +1,14 @@
+# `agenix` configuration.
+
 let
+  # users permitted to access secrets and their public keys
   users = {
     newt = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIENpe82Cp9F0/faLQu5sl8u76JCTMuOinY455jaIuPsY";
   };
 
+  # hosts and their public keys
+  # the `owner` field determines which user can access the host's secrets
+  # when configuring
   hosts = {
     blueberry = {
       key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/H968SrIhfBGk7R1HFHBjWQkQc4SQXjdO+NQQL/+Jn";
@@ -18,6 +24,7 @@ let
     };
   };
 
+  # define host types. mirrors that inside the main flake.
   types = with hosts; {
     workstations = [
       cherry
@@ -28,10 +35,11 @@ let
     ];
   };
 
-  defAccess =
-    hostType: urs:
+  # helper function to define access policies for secrets
+  access =
+    hosts: urs:
     let
-      listcombined = hostType;
+      listcombined = hosts;
       filtered = builtins.filter (host: builtins.any (x: host.owner == x) urs) listcombined;
       keys = builtins.map (host: host.key) filtered;
     in
@@ -39,14 +47,19 @@ let
       publicKeys = keys ++ map (user: users.${user}) urs;
     };
 
-  defAccessNewt = hostType: defAccess hostType [ "newt" ];
+  # common case: all hosts for given types, for user "newt"
+  accessNewt = hosts: access hosts [ "newt" ];
 in
 {
   # git ssh keys
-  "keys/gh.age" = defAccessNewt (types.workstations ++ types.servers);
-  "keys/gh-pub.age" = defAccessNewt (types.workstations ++ types.servers);
+  "keys/gh.age" = accessNewt (types.workstations ++ types.servers);
+  "keys/gh-pub.age" = accessNewt (types.workstations ++ types.servers);
 
   # tailscale auth key
   # expires: 30/08/2025
-  "tailscale.age" = defAccessNewt (builtins.attrValues hosts);
+  "tailscale.age" = accessNewt (builtins.attrValues hosts);
+
+  ## cloudflare API tokens
+  "cf/zone.age" = accessNewt types.servers;
+  "cf/redstone.observer.age" = accessNewt [ hosts.lychee ];
 }

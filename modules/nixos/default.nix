@@ -13,6 +13,7 @@
       ./networking
       ./programs
 
+      ./acme.nix # acme client config
       ./boot.nix # boot config
       ./fonts.nix # fonts
       ./plasma.nix # plasma 6

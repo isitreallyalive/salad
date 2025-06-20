@@ -29,8 +29,8 @@
 
               # git user configuration
               programs.git = {
-                userName = user.git.name;
-                userEmail = user.git.email;
+                userName = user.gitName;
+                userEmail = user.email;
               };
             };
           }) allUsers
