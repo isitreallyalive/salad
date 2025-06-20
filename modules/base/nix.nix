@@ -1,3 +1,5 @@
+# `nix` specific settings.
+
 let
   # substituter: public key
   substituters = {
@@ -11,7 +13,17 @@ let
 in
 {
   nix.settings = {
+    experimental-features = [
+      # enable flakes
+      "nix-command"
+      "flakes"
+    ];
+
+    # substituters
     substituters = builtins.attrNames substituters;
     trusted-public-keys = builtins.attrValues substituters;
   };
+
+  # allow propritetary software - it's near impossible to avoid!
+  nixpkgs.config.allowUnfree = true;
 }

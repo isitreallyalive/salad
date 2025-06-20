@@ -1,3 +1,10 @@
+/*
+  Entry point for salad specific configuration.
+
+  The difference between this and `generic` is that these options
+  should only exist when in a class module.
+*/
+
 { lib, ... }:
 
 let

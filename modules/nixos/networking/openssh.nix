@@ -1,12 +1,15 @@
+# `openssh` configuration.
+
 let
-  keys = [
+  authorizedKeys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIENpe82Cp9F0/faLQu5sl8u76JCTMuOinY455jaIuPsY"
   ];
 in
 {
-  boot.initrd.network.ssh.authorizedKeys = keys;
-  users.users.root.openssh.authorizedKeys.keys = keys;
-  users.users.newt.openssh.authorizedKeys.keys = keys;
+  # set authorized keys
+  boot.initrd.network.ssh.authorizedKeys = authorizedKeys;
+  users.users.root.openssh.authorizedKeys.keys = authorizedKeys;
+  users.users.newt.openssh.authorizedKeys.keys = authorizedKeys;
 
   services.openssh = {
     enable = true;
@@ -56,6 +59,7 @@ in
     # the port(s) openssh daemon should listen on
     ports = [ 22 ];
 
+    # this will generate host keys if they do not exist
     hostKeys = [
       {
         bits = 4096;

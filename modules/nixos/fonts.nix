@@ -1,3 +1,6 @@
+# Font configuration.
+# todo: refine
+
 {
   pkgs,
   config,
@@ -6,7 +9,7 @@
 }:
 
 {
-  config = self.lib.mkIfProfile config "graphical" {
+  config = self.lib.profile.mkIf config "graphical" {
     # install fonts
     fonts.packages = with pkgs; [
       cascadia-code

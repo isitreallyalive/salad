@@ -1,3 +1,5 @@
+# `deploy-rs` configuration.
+
 {
   lib,
   self,
@@ -9,9 +11,12 @@
 let
   inherit (lib.attrsets) filterAttrs;
 
+  # all of the deployable systems
   deployableSystems = builtins.attrNames (
     filterAttrs (_: attrs: attrs.deployable) config.easy-hosts.hosts
   );
+
+  # get the `easy-hosts` from the `nixosConfigurations` that are deployable
   easyHostsFromDeployableSystems = filterAttrs (
     name: _: builtins.elem name deployableSystems
   ) self.nixosConfigurations;
@@ -21,7 +26,8 @@ in
     autoRollback = true;
     magicRollback = true;
 
-    # create a list of nodes that we want to deploy that we can pass to the deploy configuration
+    # create a list of nodes that we want to deploy that we
+    # can pass to the deploy configuration
     nodes = builtins.mapAttrs (name: node: {
       hostname = name;
       profiles.system = {

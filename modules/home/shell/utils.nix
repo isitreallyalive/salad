@@ -1,3 +1,5 @@
+# Command line utilities.
+
 # todo: checkout
 # - denisidoro/navi
 

@@ -1,12 +1,12 @@
 { self, ... }:
 
 let
-  inherit (self.lib) mkUserSecret;
+  inherit (self.lib) secrets;
 in
 {
   age.secrets = {
     # git ssh keys
-    keys-gh = mkUserSecret "keys/gh";
-    keys-gh-pub = mkUserSecret "keys/gh-pub";
+    keys-gh = secrets.mkUser "keys/gh";
+    keys-gh-pub = secrets.mkUser "keys/gh-pub";
   };
 }

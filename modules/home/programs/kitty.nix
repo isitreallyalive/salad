@@ -1,4 +1,4 @@
-# kitty terminal emulator
+# `kitty` terminal emualator.
 
 {
   programs.kitty = {

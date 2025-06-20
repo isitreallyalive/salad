@@ -42,7 +42,7 @@ let
 
 in
 {
-  config = self.lib.mkIfProfile osConfig "graphical" {
+  config = self.lib.profile.mkIf osConfig "graphical" {
     programs.vscode = {
       enable = true;
 

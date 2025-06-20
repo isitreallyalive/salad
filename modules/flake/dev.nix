@@ -1,3 +1,5 @@
+# `nix develop` configuration.
+
 {
   perSystem =
     {
@@ -8,12 +10,9 @@
     }:
     {
       devShells.default = pkgs.mkShellNoCC {
-        name = "dotfiles";
-        meta.description = "Development shell for this configuration";
-
         packages =
           (with pkgs; [
-            gitMinimal # git
+            gitMinimal # `git`
             just # task runner
             mkpasswd # password generator
             nix-output-monitor # clean diff between generations

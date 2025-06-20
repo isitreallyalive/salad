@@ -1,13 +1,20 @@
+/*
+  Entry point for the `base` module.
+
+  The `base` module is to be imported at the beginning
+  of any class module (e.g. `nixos`).
+*/
+
 { self, config, ... }:
 
 {
   imports = [
-    ../../home # home-manager
+    ../../home # `home-manager`
 
-    ./config # salad options
-    ./nix # nix configuration
+    ./config # `salad` options
 
-    ./users.nix # user generation
+    ./nix.nix # `nix` config
+    ./users.nix # generate users
   ];
 
   system.stateVersion = config.salad.stateVersion;

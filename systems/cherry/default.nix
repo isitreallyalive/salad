@@ -1,3 +1,5 @@
+# Laptop.
+
 {
   imports = [
     ./old-hardware.nix

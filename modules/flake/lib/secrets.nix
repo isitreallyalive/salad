@@ -1,16 +1,22 @@
 { inputs }:
 
-let
-  inherit (inputs) self;
-in
 {
   /**
-    * Create a user secret to use with `agenix`.
-    *
-    * @param file - the age file to use for the secret
+    Make a user secret with `agenix`.
+
+    # Type
+
+    ```
+    mkUser :: String -> AttrSet
+    ```
+
+    # Arguments
+
+    file
+    : The name of the file in the `secrets` directory, without the `.age` extension.
   */
-  mkUserSecret = file: {
-    file = "${self}/secrets/${file}.age";
+  mkUser = file: {
+    file = "${inputs.self}/secrets/${file}.age";
     mode = "400";
   };
 }

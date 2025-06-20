@@ -1,3 +1,11 @@
+/*
+  `tailscale` configuration.
+
+  Automatically enrolls the machine into the tailnet using an auth key.
+  The auth key is stored in an age-encrypted file, which is generated
+  using the `agenix` tool.
+*/
+
 {
   pkgs,
   config,
@@ -15,7 +23,7 @@
   };
 
   age.secrets = {
-    tailscale = self.lib.mkUserSecret "tailscale";
+    tailscale = self.lib.secrets.mkUser "tailscale";
   };
 
   # cli

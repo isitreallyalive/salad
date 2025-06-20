@@ -1,3 +1,5 @@
+# Install the `nix-alien` package and enable `nix-alien-ld`.
+
 { pkgs, inputs, ... }:
 
 {

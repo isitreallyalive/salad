@@ -1,3 +1,5 @@
+# Describe attributes about users to be used when configuring in the `base` module.
+
 {
   lib,
   ...

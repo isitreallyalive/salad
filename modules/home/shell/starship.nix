@@ -1,5 +1,9 @@
-# heavily based on catppuccin powerline preset
-# see: https://starship.rs/presets/catppuccin-powerline
+/*
+  `starship` configuration to make the shell prompt pretty.
+
+  Heavily inspired by the Catppuccin Powerline preset, which
+  can be found here: https://starship.rs/presets/catppuccin-powerline
+*/
 { self, osConfig, ... }:
 
 let
@@ -10,7 +14,7 @@ let
   };
 in
 {
-  config = self.lib.mkIfProfile osConfig "graphical" {
+  config = self.lib.profile.mkIf osConfig "graphical" {
     programs.starship = {
       enable = true;
       enableBashIntegration = true;

@@ -1,3 +1,5 @@
+# `nu`shell configuration.
+
 {
   programs.nushell = {
     enable = true;

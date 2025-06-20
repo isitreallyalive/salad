@@ -1,16 +1,15 @@
+# Custom library for the salad flake.
+
 {
   lib,
   inputs,
-  _class,
   ...
 }:
 
 {
-  flake.lib = lib.fixedPoints.makeExtensible (final: {
-    config = import ./config.nix { inherit lib _class; };
+  flake.lib = {
+    profile = import ./profile.nix { inherit lib; };
     secrets = import ./secrets.nix { inherit inputs; };
-
-    inherit (final.config) mkIfProfile;
-    inherit (final.secrets) mkUserSecret;
-  });
+    system = import ./system.nix { inherit lib; };
+  };
 }

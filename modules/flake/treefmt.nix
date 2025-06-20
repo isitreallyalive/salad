@@ -1,3 +1,5 @@
+# `treefmt` configuration.
+
 { inputs, ... }:
 
 {

@@ -1,3 +1,5 @@
+# Bootloader (`systemd-boot`) configuration.
+
 # todo: add lanzaboote
 # https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
 

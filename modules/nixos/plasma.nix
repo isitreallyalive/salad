@@ -1,3 +1,5 @@
+# Enable and configure the Plasma 6 desktop environment.
+
 {
   pkgs,
   config,
@@ -10,7 +12,7 @@
     ./fonts.nix
   ];
 
-  config = self.lib.mkIfProfile config "graphical" {
+  config = self.lib.profile.mkIf config "graphical" {
     services = {
       desktopManager.plasma6.enable = true;
       displayManager.sddm = {

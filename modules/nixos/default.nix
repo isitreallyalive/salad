@@ -11,10 +11,11 @@
       ../base
 
       ./networking
-      ./plasma # plasma6 de
       ./programs
 
       ./boot.nix # boot config
+      ./fonts.nix # fonts
+      ./plasma.nix # plasma 6
     ]
     ++ (with inputs; [
       lix.nixosModules.default

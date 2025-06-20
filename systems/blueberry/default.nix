@@ -1,3 +1,5 @@
+# Home server. Runs media services.
+
 {
   imports = [
     ./old-hardware.nix

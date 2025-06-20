@@ -1,11 +1,13 @@
+# Global shell configuration.
+
 { pkgs, ... }:
 
 {
   imports = [
     # todo: carapace
-    ./nushell.nix
-    ./starship.nix
-    ./utils.nix
+    ./nushell.nix # `nu`shell
+    ./starship.nix # pretty prompts
+    ./utils.nix # util commands
   ];
 
   # `bash`

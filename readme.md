@@ -9,4 +9,3 @@
 - sudoless rebuilds
 - librewolf
 - pipe operator
-- document each file

@@ -1,3 +1,10 @@
+/*
+  Display configuration options.
+
+  This information is used to declaratively configure display
+  resolution, refresh rates, and other related settings.
+*/
+
 { lib, ... }:
 
 let
