@@ -13,7 +13,9 @@ in
 {
   imports = [
     ../../generic # generic configuration
+
     ./display.nix # display settings
+    ./domains.nix # domains for acme client
   ];
 
   # system state version

@@ -7,7 +7,13 @@
   imports = [
     ./old-hardware.nix
 
+    ./nginx.nix
     ./kanidm.nix
+  ];
+
+  users.groups.auth.members = [
+    "nginx"
+    "kanidm"
   ];
 
   salad = {
@@ -15,6 +21,10 @@
 
     profiles = {
       server = true;
+    };
+
+    domains = {
+      "auth.redstone.observer".group = "auth";
     };
   };
 }

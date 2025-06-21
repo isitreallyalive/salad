@@ -59,7 +59,11 @@ in
   # expires: 30/08/2025
   "tailscale.age" = accessNewt (builtins.attrValues hosts);
 
-  ## cloudflare API tokens
+  # kanidm
+  "kanidm/admin.age" = accessNewt [ hosts.lychee ]; # admin password
+  "kanidm/idm-admin.age" = accessNewt [ hosts.lychee ]; # idm admin password
+
+  # cloudflare API tokens
   "cf/zone.age" = accessNewt types.servers;
   "cf/redstone.observer.age" = accessNewt [ hosts.lychee ];
 }

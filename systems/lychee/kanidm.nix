@@ -1,15 +1,17 @@
-{ self, config, ... }:
+{
+  pkgs,
+  config,
+  self,
+  ...
+}:
 
-let
-  rootDomain = "redstone.observer";
-  domain = "auth.${rootDomain}";
-in
-self.lib.acme.mkCert config domain "cf/${rootDomain}" "kanidm"
-// {
+{
   services.kanidm = {
+    # server
     enableServer = true;
     serverSettings =
       let
+        domain = "auth.redstone.observer";
         cert = "/var/lib/acme/${domain}";
       in
       {
@@ -18,5 +20,27 @@ self.lib.acme.mkCert config domain "cf/${rootDomain}" "kanidm"
         tls_key = "${cert}/key.pem";
         tls_chain = "${cert}/fullchain.pem";
       };
+
+    # local client
+    enableClient = true;
+    clientSettings.uri = "https://localhost:8443";
+
+    # provisioning
+    package = pkgs.kanidmWithSecretProvisioning;
+    provision =
+      let
+        inherit (config.age) secrets;
+      in
+      {
+        enable = true;
+        adminPasswordFile = secrets.kanidm-admin.path;
+        idmAdminPasswordFile = secrets.kanidm-idm-admin.path;
+      };
+  };
+
+  # admin password
+  age.secrets = {
+    kanidm-admin = self.lib.secrets.mkCustom "kanidm/admin" "kanidm";
+    kanidm-idm-admin = self.lib.secrets.mkCustom "kanidm/idm-admin" "kanidm";
   };
 }

@@ -6,7 +6,7 @@ in
 {
   age.secrets = {
     # git ssh keys
-    keys-gh = secrets.mkUser "keys/gh";
-    keys-gh-pub = secrets.mkUser "keys/gh-pub";
+    keys-gh = secrets.mkSecret "keys/gh";
+    keys-gh-pub = secrets.mkSecret "keys/gh-pub";
   };
 }

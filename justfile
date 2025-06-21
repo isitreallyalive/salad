@@ -8,7 +8,7 @@
 @deploy target *args:
   treefmt -q
   git add .
-  deploy --targets .#{{target}} {{args}}
+  deploy -s --targets .#{{target}} {{args}}
 
 [group("deploy")]
 @rollback:
@@ -32,10 +32,9 @@
   ssh newt@{{target}}
 
 [group("admin")]
-clean:
+@gc:
   sudo nix-collect-garbage -d
   sudo nix-store --optimize
-
 
 @book +args:
   cd book && mdbook {{args}}

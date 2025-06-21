@@ -7,8 +7,7 @@
 }:
 
 {
-  flake.lib = rec {
-    acme = import ./acme.nix { inherit secrets; };
+  flake.lib = {
     profile = import ./profile.nix { inherit lib; };
     secrets = import ./secrets.nix { inherit inputs; };
     system = import ./system.nix { inherit lib; };

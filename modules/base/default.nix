@@ -13,6 +13,7 @@
 
     ./config # `salad` options
 
+    ./acme.nix # acme client
     ./nix.nix # `nix` config
     ./users.nix # generate users
   ];

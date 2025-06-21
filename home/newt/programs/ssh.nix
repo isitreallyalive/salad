@@ -1,8 +1,5 @@
 { config, ... }:
 
-let
-  inherit (config.age) secrets;
-in
 {
   programs.ssh = {
     enable = true;
@@ -15,7 +12,7 @@ in
       "github.com" = {
         user = "git";
         hostname = "github.com";
-        identityFile = secrets.keys-gh.path;
+        identityFile = config.age.secrets.keys-gh.path;
       };
     };
   };

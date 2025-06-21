@@ -1,9 +1,18 @@
 # Laptop.
 
+{ pkgs, ... }:
+
 {
   imports = [
     ./old-hardware.nix
   ];
+
+  # kanidm client to test lychee
+  services.kanidm = {
+    package = pkgs.kanidm_1_6;
+    enableClient = true;
+    clientSettings.uri = "https://auth.redstone.observer";
+  };
 
   salad = {
     stateVersion = "24.11";

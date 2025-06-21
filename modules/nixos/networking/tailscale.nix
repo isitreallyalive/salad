@@ -23,7 +23,7 @@
   };
 
   age.secrets = {
-    tailscale = self.lib.secrets.mkUser "tailscale";
+    tailscale = self.lib.secrets.mkSecret "tailscale";
   };
 
   # cli
