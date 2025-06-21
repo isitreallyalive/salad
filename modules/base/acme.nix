@@ -9,6 +9,7 @@
 }:
 
 let
+  inherit (config.salad) domains;
   inherit (self.lib) secrets;
 
   # helper function to get the root domain from a full domain name
@@ -36,16 +37,16 @@ in
           CF_ZONE_API_TOKEN_FILE = secrets.cf-zone.path;
           CF_DNS_API_TOKEN_FILE = secrets."cf-${domain}".path;
         };
-    }) config.salad.domains;
+    }) domains;
   };
 
   # cloudflare tokens
   age.secrets =
-    {
+    (lib.mkIf ((builtins.length (builtins.attrNames domains)) > 0) {
       cf-zone = secrets.mkSecret "cf/zone";
-    }
+    })
     // lib.mapAttrs' (domain: _: {
       name = "cf-${domain}";
       value = secrets.mkSecret "cf/${getRootDomain domain}";
-    }) config.salad.domains;
+    }) domains;
 }

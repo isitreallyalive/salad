@@ -6,13 +6,16 @@
   ...
 }:
 
+let
+  inherit (config.salad.users) main;
+in
 {
   # don't allow users to be modified by anything other than this module
   users.mutableUsers = false;
 
   users.users =
     let
-      inherit (config.salad.users) rootPassword main others;
+      inherit (config.salad.users) rootPassword others;
 
       configureUser = user: {
         isNormalUser = true;
@@ -34,4 +37,17 @@
         value = configureUser user;
       }) others
     ));
+
+  # sudoless rebuilds for the main user
+  security.sudo.extraRules = [
+    {
+      users = [ main.name ];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/nixos-rebuild";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
 }

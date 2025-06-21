@@ -51,9 +51,8 @@ let
   accessNewt = hosts: access hosts [ "newt" ];
 in
 {
-  # git ssh keys
-  "keys/gh.age" = accessNewt (types.workstations ++ types.servers);
-  "keys/gh-pub.age" = accessNewt (types.workstations ++ types.servers);
+  # githug ssh key
+  "gh.age" = accessNewt (types.workstations ++ types.servers);
 
   # tailscale auth key
   # expires: 30/08/2025

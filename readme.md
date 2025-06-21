@@ -5,7 +5,6 @@
 ## todo
 
 - eliminate dependency on hardware-configuration.nix
-- commit signing (gpg)
-- sudoless rebuilds
 - librewolf
 - pipe operator
+- bitwarden ssh agent

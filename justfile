@@ -16,8 +16,9 @@
 
 [group("secrets")]
 @key name:
-  ssh-keygen -t ed25519 -f secrets/keys/{{name}}.key
-  cd secrets && cat keys/{{name}}.key | agenix -e keys/{{name}}.age
+  ssh-keygen -t ed25519 -f secrets/{{name}}.key
+  cd secrets && cat {{name}}.key | agenix -e {{name}}.age
+  shopt -s nullglob; shred -u secrets/*.key secrets/*.key.pub
 
 [group("secrets")]
 @secret path:
