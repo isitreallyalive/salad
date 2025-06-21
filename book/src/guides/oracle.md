@@ -55,3 +55,25 @@ this script will:
 once you've followed the steps above, you'll have a fully functional nixos installation running on oracle cloud.
 
 from here, you can configure it just like any other nixos system.
+
+## appendix: script contents
+
+just for transparency, here are all of the files installed to your virtual machine when running the scripts:
+
+### kexec.sh
+
+```sh
+{{#include oracle/kexec.sh}}
+```
+
+### install.sh
+
+```sh
+{{#include oracle/install.sh}}
+```
+
+### configuration.nix
+
+```nix
+{{#include oracle/configuration.nix}}
+```
