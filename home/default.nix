@@ -55,6 +55,7 @@
       ++ (with inputs; [
         agenix.homeManagerModules.default
         catppuccin.homeModules.catppuccin
+        plasma-manager.homeManagerModules.plasma-manager
       ]);
   };
 }

@@ -1,5 +1,5 @@
 /*
-  Oracle Cloud VM. Runs Caddy and Kanidm, and forwards
+  Oracle Cloud VM. Runs nginx and Kanidm, and forwards
   traffic to the home server over the tailnet.
 */
 

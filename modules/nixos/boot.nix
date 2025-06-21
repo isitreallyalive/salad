@@ -19,7 +19,6 @@ in
 
   # set display resolutions
   # see: https://wiki.archlinux.org/title/Kernel_mode_setting
-  # todo: test outside of hyperv
   boot.kernelParams = builtins.map (
     display:
     "video=${display.name}:${toString display.width}x${toString display.height}@${toString display.refreshRate}"

@@ -11,12 +11,12 @@
       "github.com" = {
         user = "git";
         hostname = "github.com";
-        identityFile = config.age.secrets.keys.gh.path;
+        identityFile = config.age.secrets."keys.gh".path;
       };
     };
   };
 
   age.secrets = {
-    keys.gh = self.lib.secrets.mkSecret "gh";
+    "keys.gh" = self.lib.secrets.mkSecret "gh";
   };
 }

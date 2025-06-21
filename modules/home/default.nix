@@ -8,6 +8,7 @@
   imports = [
     ../generic
 
+    ./plasma # plasma 6 de
     ./shell # shell configuration
     ./programs
   ];

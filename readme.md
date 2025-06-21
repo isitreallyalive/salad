@@ -8,3 +8,4 @@
 - librewolf
 - pipe operator
 - bitwarden ssh agent
+- auto ssh-agent
