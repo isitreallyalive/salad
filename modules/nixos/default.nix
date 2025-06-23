@@ -12,10 +12,10 @@
 
       ./networking
       ./programs
+      ./sddm # sddm config
 
       ./boot.nix # boot config
       ./fonts.nix # fonts
-      ./plasma.nix # plasma 6
     ]
     ++ (with inputs; [
       lix.nixosModules.default

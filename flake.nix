@@ -3,7 +3,7 @@
 
   outputs =
     inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } { imports = [ ./modules/flake ]; }
+    inputs.parts.lib.mkFlake { inherit inputs; } { imports = [ ./modules/flake ]; }
     // {
       templates = rec {
         default = empty;
@@ -23,7 +23,10 @@
     # delicious implementation of nix
     lix = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "utils";
+      };
     };
 
     # manage userspace
@@ -35,15 +38,25 @@
     # manage plasma
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
     };
 
     # secret management
-    agenix.url = "github:ryantm/agenix";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+        systems.follows = "systems";
+      };
+    };
 
     ### flake management
     # bring everything together
-    flake-parts = {
+    parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
@@ -57,12 +70,22 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         flake-compat.follows = "";
+        utils.follows = "utils";
       };
+    };
+
+    # flake utility functions
+    utils = {
+      url = "github:numtide/flake-utils";
+      inputs.systems.follows = "systems";
     };
 
     ### additional
     # run foreign executables
-    alien.url = "github:thiagokokada/nix-alien";
+    alien = {
+      url = "github:thiagokokada/nix-alien";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # format all the things
     treefmt = {
@@ -71,7 +94,10 @@
     };
 
     # catppuccin theme
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     ### meta
     # all possible systems

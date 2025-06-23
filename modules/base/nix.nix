@@ -22,6 +22,15 @@ in
     # substituters
     substituters = builtins.attrNames substituters;
     trusted-public-keys = builtins.attrValues substituters;
+
+    auto-optimise-store = true;
+  };
+
+  # garbage collector
+  nix.gc = {
+    automatic = true;
+    dates = "daily";
+    options = "--delete-older-than 5d";
   };
 
   # allow propritetary software - it's near impossible to avoid!

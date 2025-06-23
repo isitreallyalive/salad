@@ -10,8 +10,10 @@ let
 in
 {
   boot.loader = {
-    # enable systemd-booy
-    systemd-boot.enable = true;
+    systemd-boot = {
+      enable = true;
+      consoleMode = "2";
+    };
 
     # allow EFI variables to be set
     efi.canTouchEfiVariables = true;

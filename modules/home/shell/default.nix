@@ -25,6 +25,7 @@
   programs.git = {
     enable = true;
     package = pkgs.gitMinimal;
+    lfs.enable = true;
     extraConfig = {
       init.defaultBranch = "main"; # default branch `main`
       push.autoSetupRemote = true; # auto remote
