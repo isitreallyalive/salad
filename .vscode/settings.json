@@ -22,6 +22,9 @@
         "flake-parts2": {
           "expr": "(builtins.getFlake (builtins.toString ./.)).currentSystem.options"
         },
+        "plasma-manager": {
+          "expr": "((builtins.getFlake (builtins.toString ./.)).nixosConfigurations.cherry.options.home-manager.users.type.getSubOptions []).programs.plasma"
+        }
       }
     }
   }

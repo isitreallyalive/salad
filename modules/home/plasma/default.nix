@@ -3,6 +3,7 @@
     enable = true;
 
     # make scrolling normal!
+    # todo: modularise
     input.touchpads = [
       {
         naturalScroll = true;
@@ -12,5 +13,8 @@
         name = "ASUP1205:00 093A:2003 Touchpad";
       }
     ];
+
+    # don't require a password to unlock the screen
+    kscreenlocker.passwordRequired = false;
   };
 }

@@ -1,4 +1,5 @@
 # `nix` specific settings.
+{ config, ... }:
 
 let
   # substituter: public key
@@ -24,6 +25,10 @@ in
     trusted-public-keys = builtins.attrValues substituters;
 
     auto-optimise-store = true;
+    trusted-users = [
+      "root"
+      config.salad.users.main.name
+    ];
   };
 
   # garbage collector

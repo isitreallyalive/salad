@@ -1,9 +1,9 @@
-# Bootloader (`systemd-boot`) configuration.
+# Bootloader (`systemd-boot`) and kernel configuration.
 
 # todo: add lanzaboote
 # https://github.com/nix-community/lanzaboote/blob/master/docs/QUICK_START.md
 
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   inherit (builtins) toString;
@@ -18,6 +18,9 @@ in
     # allow EFI variables to be set
     efi.canTouchEfiVariables = true;
   };
+
+  # use cachyos-kernel
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
 
   # set display resolutions
   # see: https://wiki.archlinux.org/title/Kernel_mode_setting

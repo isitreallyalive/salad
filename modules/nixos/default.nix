@@ -18,6 +18,7 @@
       ./fonts.nix # fonts
     ]
     ++ (with inputs; [
+      chaotic.nixosModules.default
       lix.nixosModules.default
       agenix.nixosModules.default
       catppuccin.nixosModules.catppuccin

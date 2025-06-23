@@ -20,6 +20,10 @@
     # see: https://deer.social/profile/did:plc:mojgntlezho4qt7uvcfkdndg/post/3loogwsoqok2w
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
 
+    # bleeding edge
+    # note: do NOT follow inputs
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+
     # delicious implementation of nix
     lix = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";
