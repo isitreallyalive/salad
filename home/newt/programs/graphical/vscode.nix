@@ -1,7 +1,5 @@
 {
   pkgs,
-  osConfig,
-  self,
   self',
   ...
 }:
@@ -17,6 +15,7 @@ let
         github.copilot
         github.copilot-chat
         mkhl.direnv
+        wakatime.vscode-wakatime
 
         # aesthetic
         aaron-bond.better-comments

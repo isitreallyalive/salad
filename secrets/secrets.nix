@@ -54,6 +54,9 @@ in
   # githug ssh key
   "gh.age" = accessNewt (types.workstations ++ types.servers);
 
+  # wakatime api key
+  "wakatime.age" = accessNewt types.workstations;
+
   # tailscale auth key
   # expires: 30/08/2025
   "tailscale.age" = accessNewt (builtins.attrValues hosts);
