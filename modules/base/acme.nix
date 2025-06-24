@@ -10,7 +10,6 @@
 
 let
   inherit (config.salad) domains;
-  inherit (self.lib) secrets;
 
   # helper function to get the root domain from a full domain name
   getRootDomain =
@@ -19,8 +18,28 @@ let
       parts = lib.splitString "." domain;
     in
     if (builtins.length parts) > 2 then lib.concatStringsSep "." (lib.tail parts) else domain;
+
+  # get unique root domains
+  rootDomains = lib.unique (lib.mapAttrsToList (domain: _: getRootDomain domain) domains);
 in
 {
+  # cloudflare tokens
+  age.secrets =
+    let
+      inherit (self.lib) secrets;
+    in
+    # only include zone token if there are domains
+    (lib.mkIf ((builtins.length rootDomains) > 0) {
+      cf-zone = secrets.mkSecret "cf/zone";
+    })
+    # add domain-specific tokens
+    // builtins.listToAttrs (
+      map (root: {
+        name = "cf-${root}";
+        value = secrets.mkSecret "cf/${root}";
+      }) rootDomains
+    );
+
   # acme configuration
   security.acme = {
     acceptTerms = true;
@@ -35,18 +54,8 @@ in
         in
         {
           CF_ZONE_API_TOKEN_FILE = secrets.cf-zone.path;
-          CF_DNS_API_TOKEN_FILE = secrets."cf-${domain}".path;
+          CF_DNS_API_TOKEN_FILE = secrets."cf-${getRootDomain domain}".path;
         };
     }) domains;
   };
-
-  # cloudflare tokens
-  age.secrets =
-    (lib.mkIf ((builtins.length (builtins.attrNames domains)) > 0) {
-      cf-zone = secrets.mkSecret "cf/zone";
-    })
-    // lib.mapAttrs' (domain: _: {
-      name = "cf-${domain}";
-      value = secrets.mkSecret "cf/${getRootDomain domain}";
-    }) domains;
 }

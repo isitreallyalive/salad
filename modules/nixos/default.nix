@@ -47,6 +47,11 @@
   };
   console.keyMap = "uk";
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   salad.packages = {
     # agenix cli
     inherit (inputs.agenix.packages.${pkgs.system}) default;

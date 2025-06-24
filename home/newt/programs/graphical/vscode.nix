@@ -42,41 +42,39 @@ let
 
 in
 {
-  config = self.lib.profile.mkIf osConfig "graphical" {
-    programs.vscode = {
-      enable = true;
+  programs.vscode = {
+    enable = true;
 
-      profiles = {
-        default = (mkProfile [ ] { }) // {
-          enableUpdateCheck = true;
-        };
-
-        nix =
-          mkProfile
-            (with pkgs.vscode-extensions; [
-              jnoortheen.nix-ide
-            ])
-            {
-              # nix lsp
-              "nix.enableLanguageServer" = true;
-              "nix.serverPath" = "nixd";
-              "nix.serverSettings".nixd.formatting.command = [
-                "treefmt"
-                "--stdin"
-                "{file}"
-              ];
-            };
-
-        rust = mkProfile (with pkgs.vscode-extensions; [
-          rust-lang.rust-analyzer
-          skellock.just
-        ]) { };
+    profiles = {
+      default = (mkProfile [ ] { }) // {
+        enableUpdateCheck = true;
       };
-    };
 
-    salad.packages = {
-      inherit (pkgs) nixd;
-      inherit (self') formatter;
+      nix =
+        mkProfile
+          (with pkgs.vscode-extensions; [
+            jnoortheen.nix-ide
+          ])
+          {
+            # nix lsp
+            "nix.enableLanguageServer" = true;
+            "nix.serverPath" = "nixd";
+            "nix.serverSettings".nixd.formatting.command = [
+              "treefmt"
+              "--stdin"
+              "{file}"
+            ];
+          };
+
+      rust = mkProfile (with pkgs.vscode-extensions; [
+        rust-lang.rust-analyzer
+        skellock.just
+      ]) { };
     };
+  };
+
+  salad.packages = {
+    inherit (pkgs) nixd;
+    inherit (self') formatter;
   };
 }

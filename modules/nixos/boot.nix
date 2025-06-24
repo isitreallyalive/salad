@@ -20,7 +20,9 @@ in
   };
 
   # use cachyos-kernel
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages =
+    with pkgs;
+    if config.salad.profiles.server then linuxPackages_hardened else linuxPackages_cachyos;
 
   # set display resolutions
   # see: https://wiki.archlinux.org/title/Kernel_mode_setting

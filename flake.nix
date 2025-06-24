@@ -103,6 +103,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # spotify mods
+    spicetify = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        systems.follows = "systems";
+      };
+    };
+
     ### meta
     # all possible systems
     systems.url = "github:nix-systems/default";
