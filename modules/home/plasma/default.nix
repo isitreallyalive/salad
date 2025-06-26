@@ -14,7 +14,7 @@
       }
     ];
 
-    # don't require a password to unlock the screen
-    kscreenlocker.passwordRequired = false;
+    # don't lock the screen
+    kscreenlocker.autoLock = false;
   };
 }

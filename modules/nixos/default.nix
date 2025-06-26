@@ -23,6 +23,7 @@
       agenix.nixosModules.default
       catppuccin.nixosModules.catppuccin
       home-manager.nixosModules.home-manager
+      nur.modules.nixos.default
     ]);
 
   # configuration.nix

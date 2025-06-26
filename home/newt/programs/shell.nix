@@ -10,10 +10,8 @@
   };
 
   # audio visualization
-  programs.cava = {
-    enable = true;
-    catppuccin.enable = true;
-  };
+  programs.cava.enable = true;
+  catppuccin.cava.enable = true;
 
   # `neofetch` alternative
   programs.fastfetch.enable = true;

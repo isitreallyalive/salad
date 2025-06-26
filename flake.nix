@@ -24,6 +24,12 @@
     # note: do NOT follow inputs
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
+    # nix user repository
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # delicious implementation of nix
     lix = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz";

@@ -3,8 +3,6 @@
 {
   imports = [
     ./kitty.nix
+    ./librewolf.nix
   ];
-
-  # todo: replace with librewolf
-  programs.firefox.enable = true;
 }

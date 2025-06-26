@@ -5,7 +5,6 @@
 ## todo
 
 - eliminate dependency on hardware-configuration.nix
-- librewolf
 - pipe operator
 - bitwarden ssh agent
 - auto ssh-agent
