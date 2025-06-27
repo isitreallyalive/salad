@@ -1,0 +1,13 @@
+[workspace]
+resolver = "3"
+members = ["crates/crate-a", "crates/crate-b"]
+
+[workspace.package]
+publish = false
+version = "0.0.0"
+edition = "2024"
+
+[workspace.dependencies]
+
+[workspace.metadata.crane]
+name = "my-workspace"

@@ -1,0 +1,7 @@
+[package]
+name = "crate-b"
+publish.workspace = true
+version.workspace = true
+edition.workspace = true
+
+[dependencies]

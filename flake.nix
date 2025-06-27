@@ -12,6 +12,16 @@
           path = ./templates/empty;
           description = "An empty flake template that can be adapted to your environment";
         };
+
+        rust = {
+          path = ./templates/rust/crate;
+          description = "A basic Rust crate template with flake support";
+        };
+
+        rust-workspace = {
+          path = ./templates/rust/workspace;
+          description = "A Rust workspace template with flake support";
+        };
       };
     };
 

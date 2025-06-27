@@ -1,5 +1,5 @@
 {
-  description = "Rust development flake";
+  description = "Rust workspace development flake";
 
   outputs =
     {
@@ -13,16 +13,8 @@
     utils.lib.eachDefaultSystem (
       system:
       let
-        # required targets
-        targets = [ "x86_64-unknown-linux-musl" ];
-
-        # build dependencies
-        buildDependencies = with pkgs; [
-          pkg-config
-          openssl
-        ];
-
         # nixpkgs + rust-overlay
+        inherit (pkgs) lib;
         pkgs = import nixpkgs {
           inherit system;
           overlays = [ rust-overlay.overlays.default ];
@@ -30,24 +22,52 @@
 
         craneLib = crane.mkLib pkgs;
         src = craneLib.cleanCargoSource ./.;
-        craneArgs = {
+        commonArgs = {
           inherit src;
           strictDeps = true;
-          buildInputs = buildDependencies;
+          # build dependencies
+          buildInputs = with pkgs; [
+            pkg-config
+            openssl
+          ];
         };
 
-        # build the crate
-        cargoArtifacts = craneLib.buildDepsOnly craneArgs;
-        crate = craneLib.buildPackage (craneArgs // { inherit cargoArtifacts; });
+        # workspace crates
+        cargoArtifacts = craneLib.buildDepsOnly commonArgs;
+        individualCrateArgs = commonArgs // {
+          inherit cargoArtifacts;
+          inherit (craneLib.crateNameFromCargoToml { inherit src; }) version;
+          doCheck = false;
+        };
+        buildCrate =
+          crate:
+          craneLib.buildPackage (
+            individualCrateArgs
+            // {
+              pname = crate;
+              cargoExtraArgs = "-p ${crate}";
+              src = lib.fileset.toSource {
+                root = ./.;
+                fileset = lib.fileset.unions [
+                  ./Cargo.toml
+                  ./Cargo.lock
+                  (craneLib.fileset.commonCargoSources ./crates/${crate})
+                ];
+              };
+            }
+          );
+
+        crate-a = buildCrate "crate-a";
+        crate-b = buildCrate "crate-b";
       in
       rec {
         checks = {
-          # build the crate as a part of `nix flake check` for convenience
-          inherit crate;
+          # build the crates as a part of `nix flake check` for convenience
+          inherit crate-a crate-b;
 
           # run clippy (and deny all warnings)
           clippy = craneLib.cargoClippy (
-            craneArgs
+            commonArgs
             // {
               inherit cargoArtifacts;
               cargoClippyExtraArgs = "--all-targets -- --deny warnings";
@@ -67,7 +87,7 @@
 
           # run tests with cargo-nextest
           test = craneLib.cargoNextest (
-            craneArgs
+            commonArgs
             // {
               inherit cargoArtifacts;
               partitions = 1;
@@ -77,21 +97,23 @@
           );
         };
 
-        devShells.default = pkgs.mkShell {
-          buildInputs =
-            with pkgs;
-            [
-              # rust
-              (rust-bin.stable.latest.default.override {
-                inherit targets;
-              })
-              cargo
-              rust-analyzer
-              
-              # other tools
-              taplo
-            ]
-            ++ buildDependencies;
+        packages = {
+          inherit crate-a crate-b;
+        };
+        apps.default =
+          let
+            mkApp = drv: utils.lib.mkApp { inherit drv; };
+          in
+          {
+            crate-a = mkApp crate-a;
+            crate-b = mkApp crate-b;
+          };
+
+        devShells.default = craneLib.devShell {
+          inherit checks;
+          buildInputs = with pkgs; [
+            taplo
+          ];
         };
       }
     );
