@@ -3,6 +3,7 @@
   self,
   lib,
   pkgs,
+  self',
   ...
 }:
 
@@ -29,7 +30,6 @@ in
             # password manager
             bitwarden
             # automatic captcha solving
-            # todo: client app
             buster-captcha-solver
             # reduce fingerprinting from webgl canvases
             canvasblocker
@@ -91,9 +91,16 @@ in
           settings = {
             # enable webgl
             "webgl.disabled" = false;
+            # keep cookies
+            "privacy.sanitize.sanitizeOnShutdown" = false;
           };
         };
       }) users
     );
+  };
+
+  # buster client
+  salad.packages = {
+    inherit (self'.packages) buster-client;
   };
 }

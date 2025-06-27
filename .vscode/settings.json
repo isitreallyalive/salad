@@ -1,6 +1,6 @@
 {
   "files.exclude": {
-    ".direnv": true,
+    "**/.direnv": true,
     "book/book": true
   },
 

@@ -2,8 +2,8 @@
   description = "An empty flake template that can be adapted to your environment";
 
   outputs =
-    { nixpkgs, flake-utils, ... }:
-    flake-utils.lib.eachDefaultSystem (
+    { nixpkgs, utils, ... }:
+    utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
@@ -19,11 +19,6 @@
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz";
 
     # flake management
-    flake-utils = {
-      url = "github:numtide/flake-utils";
-      inputs.systems.follows = "systems";
-    };
-    systems.url = "github:nix-systems/default";
+    utils.url = "github:numtide/flake-utils";
   };
-
 }

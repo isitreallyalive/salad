@@ -1,0 +1,3 @@
+[yanked]
+enable = true        # warn for yanked crates
+update_index = false # auto update crates.io index
