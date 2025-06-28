@@ -46,6 +46,10 @@ let
         "--stdin"
         "{file}"
       ];
+
+      # nushell
+      "terminal.integrated.profiles.linux".nushell.path = "nu";
+      "terminal.integrated.defaultProfile.linux" = "nushell";
     } // settings;
   };
 

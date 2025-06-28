@@ -17,9 +17,6 @@ in
     allowSFTP = true;
 
     settings = {
-      # todo: don't allow root login
-      # PermitRootLogin = "no";
-
       # only allow key based logins and not password
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;

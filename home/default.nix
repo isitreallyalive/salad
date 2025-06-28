@@ -26,11 +26,9 @@
             value = {
               # allow for the user not to have home-manager configuration
               imports = lib.optional (builtins.pathExists ./${user.name}) ./${user.name};
-
-              # git user configuration
-              programs.git = {
-                userName = user.gitName;
-                userEmail = user.email;
+              # expose user to home-manager modules
+              _module.args = {
+                inherit user;
               };
             };
           }) allUsers

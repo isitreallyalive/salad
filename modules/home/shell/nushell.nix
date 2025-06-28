@@ -1,5 +1,4 @@
 # nushell configuration.
-{ lib, ... }:
 
 {
   programs.nushell = {
@@ -25,10 +24,6 @@
         # reset application mode escape sequence for better SSH compatibility
         reset_application_mode = true;
       };
-    };
-
-    environmentVariables = {
-      SSH_AUTH_SOCK = lib.hm.nushell.mkNushellInline "$\"($env.XDG_RUNTIME_DIR)/ssh-agent\"";
     };
 
     shellAliases = {

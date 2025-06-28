@@ -10,4 +10,3 @@
         - https://nixos.wiki/wiki/Docker#GPU_Pass-through_.28Nvidia.29
     - cpu config
 - pipe operator
-- auto ssh-agent

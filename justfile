@@ -40,6 +40,11 @@
 @cloc:
   tokei book/src home modules systems templates flake.nix
 
+[group("utils")]
+[doc("Prune old generations")]
+@prune keep="5":
+  sudo nixos-collect-garbage --delete-older-than +{{keep}}
+
 @gc:
   sudo nix-collect-garbage -d
   sudo nix-store --optimize

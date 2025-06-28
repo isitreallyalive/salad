@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   config,
+  self,
   ...
 }:
 
@@ -15,7 +16,6 @@
       ./sddm # sddm config
 
       ./boot.nix # boot config
-      ./fonts.nix # fonts
     ]
     ++ (with inputs; [
       chaotic.nixosModules.default
@@ -56,9 +56,17 @@
   salad.packages = {
     # agenix cli
     inherit (inputs.agenix.packages.${pkgs.system}) default;
-    # make sure nushell is accessible in the bashrc
-    inherit (pkgs) nushell;
   };
+
+  # install fonts
+  fonts.packages = self.lib.profile.mkIf config [ "graphical" ] (
+    with pkgs;
+    [
+      cascadia-code
+      corefonts
+      vistafonts
+    ]
+  );
 
   # catppuccin config
   catppuccin.flavor = "mocha";

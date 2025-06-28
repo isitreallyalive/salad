@@ -51,8 +51,9 @@ let
   accessNewt = hosts: access hosts [ "newt" ];
 in
 {
-  # githug ssh key
+  # github ssh key
   "ssh/gh.age" = accessNewt (types.workstations ++ types.servers);
+  "ssh/gh.pass.age" = accessNewt (types.workstations ++ types.servers);
 
   # wakatime api key
   "wakatime.age" = accessNewt types.workstations;

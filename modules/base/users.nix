@@ -3,6 +3,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
 
@@ -24,6 +25,7 @@ in
         # `networkmanager` group.
         extraGroups = user.groups ++ [ "networkmanager" ] ++ (lib.optional user.sudo "wheel");
         hashedPassword = user.password;
+        shell = pkgs.nushell;
       };
     in
     {

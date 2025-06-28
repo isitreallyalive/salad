@@ -1,8 +1,5 @@
 # Command line utilities.
 
-# todo: checkout
-# - denisidoro/navi
-
 { pkgs, ... }:
 
 let
@@ -18,9 +15,6 @@ let
   shells = bash // nushell;
 in
 {
-  # syntax highlighting for diffs
-  programs.git.delta.enable = true;
-
   # direnv
   programs.direnv =
     enable
