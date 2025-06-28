@@ -9,7 +9,7 @@
 }:
 
 {
-  config = self.lib.profile.mkIf config "graphical" {
+  config = self.lib.profile.mkIf config [ "graphical" ] {
     # install fonts
     fonts.packages = with pkgs; [
       cascadia-code

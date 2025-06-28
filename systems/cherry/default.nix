@@ -27,6 +27,7 @@
     ];
 
     profiles = {
+      gaming = true;
       graphical = true;
       workstation = true;
     };

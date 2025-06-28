@@ -112,7 +112,10 @@
         devShells.default = craneLib.devShell {
           inherit checks;
           buildInputs = with pkgs; [
+            # dev tools
+            cargo-autoinherit
             taplo
+            rust-analyzer
           ];
         };
       }

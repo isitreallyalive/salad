@@ -128,6 +128,16 @@
       };
     };
 
+    # jetbrains plugins
+    jetbrains = {
+      url = "github:theCapypara/nix-jetbrains-plugins";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "utils";
+        systems.follows = "systems";
+      };
+    };
+
     ### meta
     # all possible systems
     systems.url = "github:nix-systems/default";

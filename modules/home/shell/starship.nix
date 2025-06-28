@@ -14,7 +14,7 @@ let
   };
 in
 {
-  config = self.lib.profile.mkIf osConfig "graphical" {
+  config = self.lib.profile.mkIf osConfig [ "graphical" ] {
     programs.starship = {
       enable = true;
       enableBashIntegration = true;

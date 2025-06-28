@@ -28,11 +28,18 @@
 @rekey:
   cd secrets && agenix -r
 
-[group("admin")]
+[group("utils")]
 @shell target:
   ssh newt@{{target}}
 
-[group("admin")]
+[group("utils")]
+@locate pkg:
+  nix eval --raw nixpkgs#{{pkg}}
+
+[group("utils")]
+@cloc:
+  tokei book/src home modules systems templates flake.nix
+
 @gc:
   sudo nix-collect-garbage -d
   sudo nix-store --optimize

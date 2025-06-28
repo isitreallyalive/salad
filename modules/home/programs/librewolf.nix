@@ -3,7 +3,6 @@
   self,
   lib,
   pkgs,
-  self',
   ...
 }:
 
@@ -11,7 +10,7 @@ let
   users = with osConfig.salad.users; [ main ] ++ others;
 in
 {
-  programs.librewolf = self.lib.profile.mkIf osConfig "graphical" {
+  programs.librewolf = self.lib.profile.mkIf osConfig [ "graphical" ] {
     enable = true;
     profiles = builtins.listToAttrs (
       lib.imap0 (id: user: {
@@ -97,10 +96,5 @@ in
         };
       }) users
     );
-  };
-
-  # buster client
-  salad.packages = {
-    inherit (self'.packages) buster-client;
   };
 }

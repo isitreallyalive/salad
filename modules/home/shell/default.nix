@@ -31,4 +31,7 @@
       push.autoSetupRemote = true; # auto remote
     };
   };
+
+  # ssh-agent
+  services.ssh-agent.enable = true;
 }

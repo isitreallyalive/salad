@@ -2,7 +2,7 @@
 { self, osConfig, ... }:
 
 {
-  programs.plasma = self.lib.profile.mkIf osConfig "graphical" {
+  programs.plasma = self.lib.profile.mkIf osConfig [ "graphical" ] {
     enable = true;
     shortcuts = {
       "ActivityManager"."switch-to-activity-501b712e-c6fb-4bfe-a816-28f5a9b7d857" = [ ];

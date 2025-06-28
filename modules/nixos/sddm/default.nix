@@ -26,7 +26,7 @@ let
       };
 in
 {
-  services = self.lib.profile.mkIf config "graphical" {
+  services = self.lib.profile.mkIf config [ "graphical" ] {
     displayManager.sddm = {
       enable = true;
       wayland.enable = true;

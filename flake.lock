@@ -259,6 +259,32 @@
         "type": "github"
       }
     },
+    "jetbrains": {
+      "inputs": {
+        "flake-utils": [
+          "utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1751116705,
+        "narHash": "sha256-JaagFQWXNV5pn9LmherKADDUio/9Q/1ez3FwuXC/Pms=",
+        "owner": "theCapypara",
+        "repo": "nix-jetbrains-plugins",
+        "rev": "5889eed93975ce84abd248f245c21f8fce5e4ada",
+        "type": "github"
+      },
+      "original": {
+        "owner": "theCapypara",
+        "repo": "nix-jetbrains-plugins",
+        "type": "github"
+      }
+    },
     "jovian": {
       "inputs": {
         "nix-github-actions": "nix-github-actions",
@@ -465,6 +491,7 @@
         "deploy-rs": "deploy-rs",
         "easy-hosts": "easy-hosts",
         "home-manager": "home-manager_2",
+        "jetbrains": "jetbrains",
         "lix": "lix",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",

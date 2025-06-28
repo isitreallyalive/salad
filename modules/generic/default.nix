@@ -12,6 +12,7 @@ let
     "graphical"
     "server"
     "workstation"
+    "gaming"
   ];
 in
 {

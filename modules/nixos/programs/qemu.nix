@@ -4,7 +4,7 @@
 
 {
   salad.packages = {
-    inherit (pkgs) qemu quickemu;
+    inherit (pkgs) qemu quickemu quickgui;
   };
 
   # uefi firmware support

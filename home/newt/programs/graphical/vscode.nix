@@ -16,6 +16,7 @@ let
         github.copilot-chat
         mkhl.direnv
         wakatime.vscode-wakatime
+        jnoortheen.nix-ide
 
         # aesthetic
         aaron-bond.better-comments
@@ -36,6 +37,15 @@ let
       # catppuccin
       "workbench.colorTheme" = "Catppuccin Mocha";
       "catppuccin.accentColor" = "mauve";
+
+      # nix lsp
+      "nix.enableLanguageServer" = true;
+      "nix.serverPath" = "nixd";
+      "nix.serverSettings".nixd.formatting.command = [
+        "treefmt"
+        "--stdin"
+        "{file}"
+      ];
     } // settings;
   };
 
@@ -49,25 +59,10 @@ in
         enableUpdateCheck = true;
       };
 
-      nix =
-        mkProfile
-          (with pkgs.vscode-extensions; [
-            jnoortheen.nix-ide
-          ])
-          {
-            # nix lsp
-            "nix.enableLanguageServer" = true;
-            "nix.serverPath" = "nixd";
-            "nix.serverSettings".nixd.formatting.command = [
-              "treefmt"
-              "--stdin"
-              "{file}"
-            ];
-          };
-
       rust = mkProfile (with pkgs.vscode-extensions; [
         rust-lang.rust-analyzer
         skellock.just
+        tamasfe.even-better-toml
       ]) { };
     };
   };

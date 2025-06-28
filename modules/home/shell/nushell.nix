@@ -1,4 +1,5 @@
-# `nu`shell configuration.
+# nushell configuration.
+{ lib, ... }:
 
 {
   programs.nushell = {
@@ -24,53 +25,10 @@
         # reset application mode escape sequence for better SSH compatibility
         reset_application_mode = true;
       };
+    };
 
-      hooks = {
-        env_change = {
-          PWD = [
-            # direnv compat
-            # see: https://github.com/nushell/nu_scripts/blob/main/nu-hooks/nu-hooks/direnv/config.nu
-            ''
-              $env.config.hooks.pre_prompt = (
-                $env.config.hooks.pre_prompt | append (
-                  http get "https://raw.githubusercontent.com/nushell/nu_scripts/refs/heads/main/nu-hooks/nu-hooks/direnv/config.nu"
-                )
-              )
-            ''
-          ];
-        };
-
-        pre_prompt = [
-          # load ssh agent
-          ''
-            def --env ensure-ssh-agent [] {
-              let ssh_agent_file = (
-                  $nu.temp-path | path join $"ssh-agent-($env.USER? | default $env.USER).nuon"
-              )
-
-              if ($ssh_agent_file | path exists) {
-                  let ssh_agent_env = open ($ssh_agent_file)
-                  if ($"/proc/($ssh_agent_env.SSH_AGENT_PID)" | path exists) {
-                      load-env $ssh_agent_env
-                      return
-                  } else {
-                      rm $ssh_agent_file
-                  }
-              }
-
-              let ssh_agent_env = ^ssh-agent -c
-                  | lines
-                  | first 2
-                  | parse "setenv {name} {value};"
-                  | transpose --header-row
-                  | into record
-              load-env $ssh_agent_env
-              $ssh_agent_env | save --force $ssh_agent_file
-            }
-            ensure-ssh-agent
-          ''
-        ];
-      };
+    environmentVariables = {
+      SSH_AUTH_SOCK = lib.hm.nushell.mkNushellInline "$\"($env.XDG_RUNTIME_DIR)/ssh-agent\"";
     };
 
     shellAliases = {

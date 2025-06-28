@@ -24,7 +24,7 @@ in
   # direnv
   programs.direnv =
     enable
-    // bash
+    // shells
     // {
       silent = true;
       nix-direnv.enable = true;
