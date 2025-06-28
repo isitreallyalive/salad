@@ -52,7 +52,7 @@ let
 in
 {
   # githug ssh key
-  "gh.age" = accessNewt (types.workstations ++ types.servers);
+  "ssh/gh.age" = accessNewt (types.workstations ++ types.servers);
 
   # wakatime api key
   "wakatime.age" = accessNewt types.workstations;

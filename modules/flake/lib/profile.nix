@@ -5,31 +5,12 @@ let
 in
 rec {
   /**
-    Check if the specified profile is enabled.
-
-    # Type
-
-    ```
-    enabled :: AttrSet -> String -> Bool
-    ```
-
-    # Arguments
-
-    config
-    : The NixOS configuration attribute set.
-
-    profile
-    : The name of the profile to check.
-  */
-  enabled = config: profile: config.salad.profiles.${profile} or false;
-
-  /**
     Check if any of the specified profiles are enabled.
 
     # Type
 
     ```
-    anyEnabled :: AttrSet -> [String] -> Bool
+    enabled :: AttrSet -> [String] -> Bool
     ```
 
     # Arguments
@@ -40,7 +21,7 @@ rec {
     profiles
     : A list of profile names to check.
   */
-  anyEnabled = config: profiles: any (profile: enabled config profile) profiles;
+  enabled = config: profiles: any (profile: config.salad.profiles.${profile} or false) profiles;
 
   /**
     Set a value if any of the specified profiles are enabled.
@@ -48,7 +29,7 @@ rec {
     # Type
 
     ```
-    mkIf :: AttrSet -> [String] -> a
+    mkIf :: AttrSet -> [String] -> a -> a
     ```
 
     # Arguments
@@ -61,11 +42,10 @@ rec {
 
     value
     : The value to set if the profile is enabled.
-    ```
   */
   mkIf =
     config: profiles: value:
-    lib.mkIf (anyEnabled config profiles) value;
+    lib.mkIf (enabled config profiles) value;
 
   /**
     Import a set of modules if any of the specified profiles are enabled.
@@ -73,7 +53,7 @@ rec {
     # Type
 
     ```
-    importIf :: AttrSet -> [String] -> [Module]
+    importIf :: AttrSet -> [String] -> [Module] -> [Module]
     ```
 
     # Arguments
@@ -89,5 +69,5 @@ rec {
   */
   importIf =
     config: profiles: imports:
-    lib.optionals (anyEnabled config profiles) imports;
+    lib.optionals (enabled config profiles) imports;
 }

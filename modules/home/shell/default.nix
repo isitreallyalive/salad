@@ -32,6 +32,6 @@
     };
   };
 
-  # ssh-agent
+  # `ssh-agent`
   services.ssh-agent.enable = true;
 }

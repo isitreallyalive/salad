@@ -68,7 +68,7 @@ in
       procs # `ps` replacement
       sd # `sed` replacement
       tokei # cloc, scc, etc. replacement
-      uutils-coreutils-noprefix # rust rewrite of coreutils
+      uutils-coreutils # rust rewrite of coreutils
       xh # `curl` replacement
       ;
   };

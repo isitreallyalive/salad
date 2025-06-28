@@ -33,14 +33,19 @@
       in
       {
         enable = true;
-        adminPasswordFile = secrets.kanidm-admin.path;
-        idmAdminPasswordFile = secrets.kanidm-idm-admin.path;
+        adminPasswordFile = secrets."kanidm/admin".path;
+        idmAdminPasswordFile = secrets."kanidm/idm-admin".path;
       };
   };
 
-  # admin password
-  age.secrets = {
-    kanidm-admin = self.lib.secrets.mkCustom "kanidm/admin" "kanidm";
-    kanidm-idm-admin = self.lib.secrets.mkCustom "kanidm/idm-admin" "kanidm";
-  };
+  age.secrets =
+    let
+      config = {
+        owner = "kanidm";
+      };
+    in
+    self.lib.secrets {
+      "kanidm/admin" = config;
+      "kanidm/idm-admin" = config;
+    };
 }

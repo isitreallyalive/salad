@@ -20,7 +20,7 @@
     EOF
   '';
 
-  age.secrets = {
-    wakatime = self.lib.secrets.mkSecret "wakatime";
+  age.secrets = self.lib.secrets {
+    wakatime = { };
   };
 }

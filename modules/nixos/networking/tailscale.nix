@@ -22,8 +22,8 @@
     authKeyFile = config.age.secrets.tailscale.path;
   };
 
-  age.secrets = {
-    tailscale = self.lib.secrets.mkSecret "tailscale";
+  age.secrets = self.lib.secrets {
+    tailscale = { };
   };
 
   # cli

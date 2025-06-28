@@ -26,19 +26,21 @@ in
   # cloudflare tokens
   age.secrets =
     let
-      inherit (self.lib) secrets;
+      # only include zone token if there are domains
+      domainsExist = (builtins.length rootDomains) > 0;
+      zoneToken = lib.optionalAttrs domainsExist {
+        "cf/zone" = { };
+      };
+      # add domain-specific tokens
+      domainTokens = builtins.listToAttrs (
+        map (root: {
+          name = "cf/${root}";
+          value = { };
+        }) rootDomains
+      );
+      tokens = zoneToken // domainTokens;
     in
-    # only include zone token if there are domains
-    (lib.mkIf ((builtins.length rootDomains) > 0) {
-      cf-zone = secrets.mkSecret "cf/zone";
-    })
-    # add domain-specific tokens
-    // builtins.listToAttrs (
-      map (root: {
-        name = "cf-${root}";
-        value = secrets.mkSecret "cf/${root}";
-      }) rootDomains
-    );
+    self.lib.secrets tokens;
 
   # acme configuration
   security.acme = {
@@ -53,7 +55,7 @@ in
           inherit (config.age) secrets;
         in
         {
-          CF_ZONE_API_TOKEN_FILE = secrets.cf-zone.path;
+          CF_ZONE_API_TOKEN_FILE = secrets."cf/zone".path;
           CF_DNS_API_TOKEN_FILE = secrets."cf-${getRootDomain domain}".path;
         };
     }) domains;
