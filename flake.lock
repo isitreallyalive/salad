@@ -500,7 +500,8 @@
         "spicetify": "spicetify",
         "systems": "systems",
         "treefmt": "treefmt",
-        "utils": "utils"
+        "utils": "utils",
+        "vscode": "vscode"
       }
     },
     "rust-overlay": {
@@ -620,6 +621,29 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "vscode": {
+      "inputs": {
+        "flake-utils": [
+          "utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1752113362,
+        "narHash": "sha256-KWELfQtHJjNG7X485TplXmKSmZIsYXHeruAxxEnsH7M=",
+        "owner": "nix-community",
+        "repo": "nix-vscode-extensions",
+        "rev": "6e1e610de8302bd2b1575c90c73997acd333a311",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-vscode-extensions",
         "type": "github"
       }
     }

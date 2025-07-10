@@ -5,12 +5,12 @@
 }:
 
 let
-  inherit (pkgs) vscode-extensions;
+  inherit (pkgs.nix-vscode-extensions) vscode-marketplace;
 
   mkProfile = extensions: settings: {
     extensions =
       extensions
-      ++ (with vscode-extensions; [
+      ++ (with vscode-marketplace; [
         # funcional
         github.copilot
         github.copilot-chat
@@ -63,10 +63,11 @@ in
         enableUpdateCheck = true;
       };
 
-      rust = mkProfile (with pkgs.vscode-extensions; [
+      rust = mkProfile (with vscode-marketplace; [
         rust-lang.rust-analyzer
         skellock.just
         tamasfe.even-better-toml
+        norgor.capnp
       ]) { };
     };
   };

@@ -1,5 +1,5 @@
-# `nix` specific settings.
-{ config, ... }:
+# `nix`/`nixpkgs` settings.
+{ config, inputs, ... }:
 
 let
   # substituter: public key
@@ -38,6 +38,9 @@ in
     options = "--delete-older-than 5d";
   };
 
-  # allow propritetary software - it's near impossible to avoid!
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    # allow propritetary software - it's near impossible to avoid!
+    config.allowUnfree = true;
+    overlays = [ inputs.vscode.overlays.default ];
+  };
 }

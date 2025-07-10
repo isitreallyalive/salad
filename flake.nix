@@ -138,6 +138,15 @@
       };
     };
 
+    # vscode extensions
+    vscode = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "utils";
+      };
+    };
+
     ### meta
     # all possible systems
     systems.url = "github:nix-systems/default";
